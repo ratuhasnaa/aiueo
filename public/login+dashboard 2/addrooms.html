@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Rooms</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFFFFF;
+            color: #336699;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            background-color: #336699;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border: 1px solid #336699;
+        }
+        th {
+            background-color: #336699;
+            color: white;
+        }
+        td {
+            background-color: #f0f0f0;
+        }
+        .add-room {
+            background-color: #336699;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .add-room:hover {
+            background-color: #25527a;
+        }
+        .search-box {
+            padding: 8px;
+            margin-top: 20px;
+            width: 200px;
+            border: 1px solid #336699;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            padding: 10px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        .modal-body label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .modal-body input, .modal-body select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        button.close-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button.close-btn:hover {
+            background-color: #d32f2f;
+        }
+        button.save-btn {
+            background-color: #336699;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.save-btn:hover {
+            background-color: #25527a;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>All Rooms</h1>
+    </div>
+    <input type="text" class="search-box" id="searchBox" placeholder="Search Rooms..." onkeyup="searchRooms()">
+    <button class="add-room" onclick="openModal()">Add New Room</button>
+    
+    <div id="addRoomModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                Add New Room
+            </div>
+            <div class="modal-body">
+                <label for="roomName">Room Name:</label>
+                <input type="text" id="roomName" placeholder="Enter room name">
+                <label for="roomRent">Rent (Basic):</label>
+                <input type="number" id="roomRent" placeholder="Enter rent price">
+                <label for="shortCode">Short Code:</label>
+                <input type="text" id="shortCode" placeholder="Enter short code">
+                <label for="numRooms">No. of Rooms:</label>
+                <input type="number" id="numRooms" placeholder="Enter number of rooms">
+                <label for="roomType">Room Type:</label>
+                <select id="roomType">
+                    <option value="Ballroom">Ballroom</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Exhibition">Exhibition</option>
+                    <option value="Incentives">Incentives</option>
+                    <option value="Conventions">Conventions</option>
+                </select>
+                <label for="roomStatus">Status:</label>
+                <select id="roomStatus">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="close-btn" onclick="closeModal()">Cancel</button>
+                <button class="save-btn" onclick="saveRoom()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <table id="roomsTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Rent (Basic)</th>
+                <th>Short Code</th>
+                <th>No Of Room</th>
+                <th>Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>1</td>
+                <td>Floress Ballroom</td>
+                <td>3200000</td>
+                <td>FLR01</td>
+                <td>1</td>
+                <td>Ballroom</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Floress Ballroom</td>
+                <td>3200000</td>
+                <td>FLR02</td>
+                <td>2</td>
+                <td>Meeting</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Floress Ballroom</td>
+                <td>3200000</td>
+                <td>FLR03</td>
+                <td>3</td>
+                <td>Exhibition</td>
+                <td>Inactive</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function openModal() {
+            document.getElementById('addRoomModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('addRoomModal').style.display = 'none';
+        }
+
+        function saveRoom() {
+            const table = document.getElementById('tableBody');
+            const row = table.insertRow();
+            const roomIndex = table.rows.length; // To number the new room automatically
+            row.insertCell(0).innerHTML = roomIndex; // New room number
+            
+            const cells = ['roomName', 'roomRent', 'shortCode', 'numRooms', 'roomType', 'roomStatus'];
+            cells.forEach((id, index) => {
+                const cell = row.insertCell(index + 1); // Start inserting from the second cell
+                const value = document.getElementById(id).value;
+                cell.innerHTML = value;
+            });
+            closeModal(); // Close the modal after saving the room
+        }
+
+        function searchRooms() {
+            const input = document.getElementById('searchBox');
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById('roomsTable');
+            const tr = table.getElementsByTagName('tr');
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[1]; // Assuming the name is in the second column
+                if (td) {
+                    let text = td.textContent || td.innerText;
+                    tr[i].style.display = text.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

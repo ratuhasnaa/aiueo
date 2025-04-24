@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 32px;
+            color: #336699;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .subheader {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .bulk-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .bulk-action select,
+        .bulk-action button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+        }
+        .bulk-action select {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .bulk-action button {
+            background-color: #336699;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .bulk-action button:hover {
+            background-color: #274b75;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #f9f9f9;
+            color: #336699;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 13px;
+        }
+        tr {
+            transition: background-color 0.3s;
+        }
+        tr:hover {
+            background-color: #f1f8ff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .status.available {
+            background-color: #e6f7e6;
+            color: #33cc33;
+        }
+        .status.low {
+            background-color: #fff3cd;
+            color: #ff9900;
+        }
+        .status.outofstock {
+            background-color: #f8d7da;
+            color: #ff6666;
+        }
+
+        /* Floating Action Button */
+        .action-btn {
+            background-color: #336699;
+            color: #FFFFFF;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .action-btn:hover {
+            background-color: #274b75;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scrollable Table */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="header">Stock Details</h1>
+    <p class="subheader">Here is our latest stock list.</p>
+
+    <div class="bulk-action">
+        <div>
+            <select id="bulkAction">
+                <option value="">Bulk Action</option>
+                <option value="delete">Delete</option>
+                <option value="edit">Edit</option>
+            </select>
+            <button onclick="applyBulkAction()">Apply</button>
+        </div>
+        <div>
+            <input type="search" placeholder="Search..." style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px;">
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll" onclick="toggleAll()"></th>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price (pcs / KG)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#565601</td>
+                    <td contenteditable="true">Kursi Lipat</td>
+                    <td contenteditable="true">150 pcs</td>
+                    <td contenteditable="true">Rp5.000.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#125GG5</td>
+                    <td contenteditable="true">Meja Bulat</td>
+                    <td contenteditable="true">20 pcs</td>
+                    <td contenteditable="true">Rp4.000.000</td>
+                    <td><span class="status low">Low</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#12UFG5</td>
+                    <td contenteditable="true">Papan Nama</td>
+                    <td contenteditable="true">30 pcs</td>
+                    <td contenteditable="true">Rp500.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#555FG5</td>
+                    <td contenteditable="true">Proyektor</td>
+                    <td contenteditable="true">05 pcs</td>
+                    <td contenteditable="true">Rp15.000.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#885FG5</td>
+                    <td contenteditable="true">Kipas Angin</td>
+                    <td contenteditable="true">10 pcs</td>
+                    <td contenteditable="true">Rp3.000.000</td>
+                    <td><span class="status low">Low</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#12UFG5</td>
+                    <td contenteditable="true">Air Mineral</td>
+                    <td contenteditable="true">200 botol</td>
+                    <td contenteditable="true">Rp800.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#555FG5</td>
+                    <td contenteditable="true">Sound System</td>
+                    <td contenteditable="true">02 pcs</td>
+                    <td contenteditable="true">Rp10.000.000</td>
+                    <td><span class="status outofstock">Out of Stock</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#885FG5</td>
+                    <td contenteditable="true">Kursi VIP</td>
+                    <td contenteditable="true">10 pcs</td>
+                    <td contenteditable="true">Rp7.500.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#565601</td>
+                    <td contenteditable="true">Meja Makan</td>
+                    <td contenteditable="true">20 pcs</td>
+                    <td contenteditable="true">Rp10.000.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#125GG5</td>
+                    <td contenteditable="true">Penyegar Udara</td>
+                    <td contenteditable="true">05 pcs</td>
+                    <td contenteditable="true">Rp1.000.000</td>
+                    <td><span class="status low">Low</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#12UFG5</td>
+                    <td contenteditable="true">Cermin</td>
+                    <td contenteditable="true">10 pcs</td>
+                    <td contenteditable="true">Rp2.000.000</td>
+                    <td><span class="status available">Available</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>#555FG5</td>
+                    <td contenteditable="true">Lampu Hias</td>
+                    <td contenteditable="true">15 pcs</td>
+                    <td contenteditable="true">Rp3.500.000</td>
+                    <td><span class="status outofstock">Out of Stock</span></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Floating Action Button -->
+<div class="action-btn">+</div>
+
+<script>
+    // Function to select/unselect all checkboxes
+    function toggleAll() {
+        let selectAll = document.getElementById("selectAll");
+        let checkboxes = document.querySelectorAll(".row-checkbox");
+        checkboxes.forEach(checkbox => checkbox.checked = selectAll.checked);
+    }
+
+    // Function to apply bulk action
+    function applyBulkAction() {
+        let action = document.getElementById("bulkAction").value;
+        let checkboxes = document.querySelectorAll(".row-checkbox:checked");
+
+        if (action === "delete") {
+            checkboxes.forEach(checkbox => {
+                let row = checkbox.closest("tr");
+                row.remove();  // Remove the selected rows
+            });
+        } else if (action === "edit") {
+            checkboxes.forEach(checkbox => {
+                let row = checkbox.closest("tr");
+                let cells = row.querySelectorAll("[contenteditable='true']");
+                cells.forEach(cell => cell.style.backgroundColor = "#fff7c6"); // Highlight edited cells
+            });
+            alert("Now you can edit the selected rows.");
+        }
+    }
+</script>
+
+</body>
+</html>
+``

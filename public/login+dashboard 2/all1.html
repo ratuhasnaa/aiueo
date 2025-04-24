@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'red hat display', sans-serif;
+            background-color: #336699;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            width: 320px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .login-container img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #336699;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #336699;
+        }
+
+        .divider {
+            margin: 20px 0;
+            border-top: 1px solid #ddd;
+            position: relative;
+        }
+
+        .divider::after {
+            content: "OR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            background-color: #ffffff;
+            padding: 0 10px;
+            transform: translateX(-50%);
+            color: #6d6d6d;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-button {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        .social-button.google {
+            color: #4285f4;
+        }
+
+        .social-button.facebook {
+            color: #3b5998;
+        }
+
+        .social-button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .sign-up {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            margin-top: 15px;
+            color: #336699;
+            font-size: 12px;
+        }
+
+        .forgot-password a {
+            color: #336699;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo1.png" alt="Logo">
+        <form id="loginForm">
+            <input type="email" placeholder="Email address" class="input-field" required>
+            <input type="password" placeholder="Password" class="input-field" required>
+            <button type="submit" class="login-button">Log in</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="social-login">
+            <button class="social-button google">Continue with Google</button>
+            <button class="social-button facebook">Continue with Facebook</button>
+        </div>
+
+        <div class="sign-up">
+            <button class="social-button">Sign up with email</button>
+        </div>
+
+        <div class="forgot-password">
+            <a href="#">Can't log in?</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // You can add your own validation logic here
+            var email = document.querySelector('input[type="email"]').value;
+            var password = document.querySelector('input[type="password"]').value;
+
+            // Example of simple validation
+            if (email === "admin@example.com" && password === "password") {
+                // Redirect to dashboard page
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Invalid credentials, please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

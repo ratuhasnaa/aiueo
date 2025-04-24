@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Ticket System with AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 30%;
+            background-color: #F7F9FC;
+            border-right: 1px solid #E0E4E8;
+            padding: 10px;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .filter-btn {
+            background: none;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            color: #336699;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            text-decoration: underline;
+            color: #000;
+        }
+        .ticket {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #E0E4E8;
+            cursor: pointer;
+        }
+        .ticket:hover {
+            background-color: #E0E4E8;
+        }
+        .ticket .name {
+            font-weight: bold;
+        }
+        .ticket .date {
+            color: gray;
+        }
+        .ticket .message-preview {
+            color: #555;
+        }
+        .ticket .star-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: gold;
+        }
+
+        /* Ticket Detail Section */
+        .ticket-detail {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #F9F9F9;
+        }
+        .ticket-detail h2 {
+            color: #336699;
+            margin: 0 0 20px;
+        }
+        .ticket-detail .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .ticket-detail .actions button {
+            background-color: #336699;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .reply-box {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .reply-box textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #E0E4E8;
+            border-radius: 4px;
+        }
+        .reply-box input[type="file"] {
+            margin-top: 10px;
+        }
+        .reply-box .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .reply-box .send-reply {
+            background-color: #336699;
+            color: #FFFFFF;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* AI Suggestions */
+        .ai-suggestions {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #F7F9FC;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .ai-suggestions h4 {
+            color: #336699;
+            margin-bottom: 10px;
+        }
+        .ai-suggestion {
+            background-color: #E0E4E8;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .ai-suggestion:hover {
+            background-color: #D0D4E0;
+        }
+
+        /* Footer to fill space */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Sidebar with Filters and Ticket List -->
+    <div class="sidebar">
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterTickets('all')">All</button>
+            <button class="filter-btn" onclick="filterTickets('closed')">Closed</button>
+            <button class="filter-btn" onclick="filterTickets('stared')">Stared</button>
+        </div>
+
+        <div id="ticket-list">
+            <div class="ticket" onclick="openTicket('ticket1')">
+                <div>
+                    <div class="name">Ethan Anderson</div>
+                    <div class="message-preview">Unable to select currency...</div>
+                </div>
+                <div class="date">16 Dec, 2019</div>
+                <button class="star-btn" onclick="starTicket(event, 'ticket1')">★</button>
+            </div>
+            <div class="ticket" onclick="openTicket('ticket2')">
+                <div>
+                    <div class="name">Jose Peterson</div>
+                    <div class="message-preview">Have not received bitcoin...</div>
+                </div>
+                <div class="date">14 Dec, 2019</div>
+                <button class="star-btn" onclick="starTicket(event, 'ticket2')">★</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Detail Section -->
+    <div class="ticket-detail">
+        <h2>Unable to select currency when booking a room</h2>
+        <div class="actions">
+            <span>Technical Problem</span>
+            <button id="closeBtn">Mark as Closed</button>
+        </div>
+        <p>Replied by Noor Parvez at 11:32 AM</p>
+
+        <div class="reply-box">
+            <textarea placeholder="Write a reply..."></textarea>
+            <input type="file" accept="image/*,.pdf,.docx" />
+            <div class="actions">
+                <div class="ai-suggestions">
+                    <h4>AI Suggestions:</h4>
+                    <div class="ai-suggestion" onclick="applySuggestion(this)">Can you provide more details?</div>
+                    <div class="ai-suggestion" onclick="applySuggestion(this)">We are looking into this issue.</div>
+                    <div class="ai-suggestion" onclick="applySuggestion(this)">Thanks for your patience.</div>
+                </div>
+                <button class="send-reply" onclick="sendReply()">Reply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    © 2024 Ticket Support System
+</div>
+
+<script>
+    let tickets = {
+        'ticket1': {name: 'Ethan Anderson', subject: 'Unable to select currency', status: 'active', date: '16 Dec, 2019', stared: false},
+        'ticket2': {name: 'Jose Peterson', subject: 'Have not received bitcoin', status: 'active', date: '14 Dec, 2019', stared: false},
+        'ticket3': {name: 'Ethan Anderson', subject: 'Unable to select currency', status: 'active', date: '16 Dec, 2019', stared: false},
+        'ticket4': {name: 'Jose Peterson', subject: 'Have not received bitcoin', status: 'active', date: '14 Dec, 2019', stared: false},
+        'ticket5': {name: 'Ethan Anderson', subject: 'Unable to select currency', status: 'active', date: '16 Dec, 2019', stared: false},
+        'ticket6': {name: 'Jose Peterson', subject: 'Have not received bitcoin', status: 'active', date: '14 Dec, 2019', stared: false},
+       
+    };
+
+    function openTicket(ticketId) {
+        const ticket = tickets[ticketId];
+        document.querySelector('.ticket-detail h2').innerText = ticket.subject;
+        document.querySelector('.ticket-detail .actions span').innerText = 'Status: ' + (ticket.status === 'closed' ? 'Closed' : 'Active');
+    }
+
+    function sendReply() {
+        alert("Reply sent!");
+        document.querySelector('.reply-box textarea').value = ''; // Clear the text box
+    }
+
+    function filterTickets(filter) {
+        const ticketList = document.getElementById('ticket-list');
+        ticketList.innerHTML = ''; // Clear current tickets
+
+        Object.keys(tickets).forEach(ticketId => {
+            const ticket = tickets[ticketId];
+            if (filter === 'all' || filter === ticket.status || (filter === 'stared' && ticket.stared)) {
+                const ticketDiv = document.createElement('div');
+                ticketDiv.className = 'ticket';
+                ticketDiv.onclick = () => openTicket(ticketId);
+                ticketDiv.innerHTML = `
+                    <div>
+                        <div class="name">${ticket.name}</div>
+                        <div class="message-preview">${ticket.subject}</div>
+                    </div>
+                    <div
+                    <div class="date">${ticket.date}</div>
+                    <button class="star-btn" onclick="starTicket(event, '${ticketId}')">★</button>`;
+                ticketList.appendChild(ticketDiv);
+            }
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.filter-btn[onclick="filterTickets('${filter}')"]`).classList.add('active');
+    }
+
+    function starTicket(event, ticketId) {
+        event.stopPropagation(); // Prevent opening ticket when starring it
+        tickets[ticketId].stared = !tickets[ticketId].stared;
+        alert(tickets[ticketId].stared ? "Ticket starred!" : "Ticket unstarred!");
+    }
+
+    function applySuggestion(element) {
+        document.querySelector('.reply-box textarea').value = element.innerText;
+    }
+
+    document.getElementById('closeBtn').addEventListener('click', function() {
+        alert("Ticket marked as closed!");
+        const currentTicket = document.querySelector('.ticket-detail h2').innerText;
+        Object.keys(tickets).forEach(ticketId => {
+            if (tickets[ticketId].subject === currentTicket) {
+                tickets[ticketId].status = 'closed';
+            }
+        });
+        filterTickets('closed'); // Update to Closed filter after marking
+    });
+</script>
+
+</body>
+</html>

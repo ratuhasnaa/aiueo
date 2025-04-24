@@ -1,0 +1,104 @@
+/* Event Highlights Section */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #336699;
+}
+
+.event-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.event-card img {
+    width: 5px;
+    height: 10px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.event-details {
+    flex: 1;
+}
+
+.event-details h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.event-details p {
+    margin: 5px 0 10px;
+    color: #555;
+}
+
+.post-button {
+    background-color: #336699;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.post-button:hover {
+    background-color: #285580;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    margin: 100px auto;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h4 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #666;
+}

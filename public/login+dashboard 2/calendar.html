@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #336699;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px 0 0 8px;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dropdown-btn {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        .dropdown-btn::after {
+            content: '\25BC';
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .dropdown-btn:hover + .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background-color: #e0e0e0;
+            border: 1px solid #d3d3d3;
+            font-size: 0.9em;
+        }
+
+        .day {
+            background-color: #ffffff;
+            border: 1px solid #d3d3d3;
+            height: 100px;
+            position: relative;
+            padding: 5px;
+        }
+
+        .day-number {
+            font-weight: bold;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .day-description {
+            font-size: 0.8em;
+            margin-top: 20px;
+            word-wrap: break-word;
+            max-height: 60px;
+            overflow: hidden;
+        }
+
+        .day.booked {
+            background-color: #ffcccc;
+        }
+
+        .day.available {
+            background-color: #c8e6c9;
+        }
+
+        .edit-schedule {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 0.8em;
+            background-color: #336699;
+            color: white;
+            border: none;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+
+        .edit-schedule:hover {
+            background-color: #285a8a;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            max-width: 600px;
+            min-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-body textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            min-height: 100px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        .modal-footer {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 20px;
+        }
+
+        .modal-footer button {
+            padding: 10px 20px;
+            background-color: #336699;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-footer button:hover {
+            background-color: #285a8a;
+        }
+
+        .modal-footer button:focus {
+            outline: none;
+        }
+
+
+        .month-selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .month-selector select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="editvenue.html">Edit Venue</a></li>
+                <li><a href="addrooms.html">All Rooms</a></li>
+                <li>
+                    <div class="dropdown-btn">Reports</div>
+                    <ul class="dropdown-content">
+                        <li><a href="stocks.html">Stocks</a></li>
+                        <li><a href="expenses.html">Expenses</a></li>
+                        <li><a href="bookings.html">Booking</a></li>
+                        <li><a href="pmethods.html">Payment Methods</a></li>
+                    </ul>
+                </li>
+                <li><a href="calendar.html">Calendar</a></li>
+                <li><a href="generalsetting.html">General Setting</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="card">
+                <div class="month-selector">
+                    <label for="month">Select Month:</label>
+                    <select id="month" onchange="changeMonth()">
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
+                <h3>Schedule in 2025</h3>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Schedule</h2>
+            </div>
+            <div class="modal-body">
+                <label for="status">Status:</label>
+                <select id="status">
+                    <option value="available">Available</option>
+                    <option value="booked">Booked</option>
+                </select>
+                <br>
+                <label for="note">Description:</label>
+                <textarea id="note" rows="4"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button onclick="saveChanges()">Save</button>
+                <button onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let dateStatus = {};
+        let selectedDate;
+        let currentMonth = 0;
+
+        function openModal(date) {
+            selectedDate = date;
+            document.getElementById('status').value = dateStatus[date]?.status || 'available';
+            document.getElementById('note').value = dateStatus[date]?.note || '';
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function saveChanges() {
+            const status = document.getElementById('status').value;
+            const note = document.getElementById('note').value;
+
+             // Log status dan note untuk memastikan sudah tersimpan dengan benar
+            console.log(`Saving status for day ${selectedDate}: ${status}`);
+
+            // Menyimpan status dan catatan ke dalam objek dateStatus
+            dateStatus[selectedDate] = { status, note };
+
+            // Update kalender untuk mencerminkan perubahan
+            updateCalendar();
+
+            // Menutup modal setelah perubahan
+            closeModal();
+        }
+
+        
+
+        function changeMonth() {
+            currentMonth = parseInt(document.getElementById('month').value, 10);
+            updateCalendar();
+        }
+
+        function updateCalendar() {
+    const calendarGrid = document.getElementById('calendarGrid');
+    calendarGrid.innerHTML = '';
+    const daysInMonth = new Date(2025, currentMonth + 1, 0).getDate();
+    const startDay = new Date(2025, currentMonth, 1).getDay();
+
+    for (let i = 0; i < startDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'day';
+        calendarGrid.appendChild(emptyCell);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.className = 'day';
+        const dayNumber = document.createElement('div');
+        dayNumber.className = 'day-number';
+        dayNumber.textContent = day;
+        dayCell.appendChild(dayNumber);
+
+        const description = document.createElement('div');
+        description.className = 'day-description';
+        description.textContent = dateStatus[day]?.note || '';
+        dayCell.appendChild(description);
+
+        // Memeriksa status tanggal dan memberi kelas yang sesuai
+        if (dateStatus[day]?.status === 'booked') {
+            dayCell.classList.add('booked');
+            console.log(`Day ${day} is booked, applying 'booked' class`);
+        } else {
+            dayCell.classList.add('available');
+        }
+
+        const editButton = document.createElement('button');
+        editButton.className = 'edit-schedule';
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => openModal(day);
+        dayCell.appendChild(editButton);
+
+        calendarGrid.appendChild(dayCell);
+    }
+}
+
+
+
+        updateCalendar();
+    </script>
+</body>
+</html>

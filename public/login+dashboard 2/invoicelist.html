@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #336699;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f9fc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .title {
+            font-size: 24px;
+        }
+
+        .header .btn {
+            background-color: #336699;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f1f1f1;
+            color: #336699;
+        }
+
+        table td {
+            color: #555;
+        }
+
+        table td a {
+            color: #336699;
+            text-decoration: none;
+        }
+
+        .status-complete {
+            color: #28a745;
+        }
+
+        .status-pending {
+            color: #ffc107;
+        }
+
+        .btn-print, .btn-view {
+            background-color: #e7f1ff;
+            color: #336699;
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            background-color: #336699;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 100px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above */
+            left: 50%;
+            margin-left: -50px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1 class="title">Invoices</h1>
+        <button class="btn">+ Add New Invoice</button>
+    </div>
+
+    <p>You have total 937 invoices.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="invoice-table-body">
+            <!-- Dummy data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button onclick="prevPage()">Prev</button>
+        <div>
+            <button onclick="goToPage(1)">1</button>
+            <button onclick="goToPage(2)">2</button>
+            <button onclick="goToPage(3)">3</button>
+            <button onclick="goToPage(4)">4</button>
+            <button onclick="goToPage(5)">5</button>
+        </div>
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+<script>
+    const invoices = [
+        { id: '#746F5K2', date: '23 Jan 2019, 10:45pm', amount: '$2300.00', status: 'Complete' },
+        { id: '#546H74W', date: '12 Jan 2020, 10:45pm', amount: '$120.00', status: 'Pending' },
+        { id: '#87X6A44', date: '26 Dec 2019, 12:15pm', amount: '$560.00', status: 'Complete' },
+        { id: '#986G531', date: '21 Jan 2019, 6:12am', amount: '$3654.00', status: 'Pending' },
+        { id: '#326T4M9', date: '21 Jan 2019, 6:12am', amount: '$200.00', status: 'Complete' },
+        { id: '#496G631', date: '21 Feb 2020, 5:12pm', amount: '$140.00', status: 'Pending' },
+        { id: '#186X4M8', date: '30 Jan 2019, 2:12pm', amount: '$1700.00', status: 'Complete' },
+        { id: '#996Y2G2', date: '15 Mar 2020, 3:35pm', amount: '$600.00', status: 'Pending' },
+    ];
+
+    function loadTableData() {
+        const tableBody = document.getElementById('invoice-table-body');
+        invoices.forEach((invoice) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><a href="#">${invoice.id}</a></td>
+                <td>${invoice.date}</td>
+                <td>${invoice.amount}</td>
+                <td><span class="status-${invoice.status.toLowerCase()}">${invoice.status}</span></td>
+                <td>
+                    <a href="print1.html" class="btn-print">Print</a>
+                    <button class="btn-view" onclick="viewInvoice('${invoice.id}')">View</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function printInvoice(invoiceId) {
+        alert('Printing invoice ' + invoiceId);
+    }
+
+    function viewInvoice(invoiceId) {
+        alert('Viewing details for invoice ' + invoiceId);
+    }
+
+    function prevPage() {
+        alert('Previous Page');
+    }
+
+    function nextPage() {
+        alert('Next Page');
+    }
+
+    function goToPage(page) {
+        alert('Go to Page ' + page);
+    }
+
+    loadTableData();
+</script>
+
+</body>
+</html>

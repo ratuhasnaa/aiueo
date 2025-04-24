@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Interface</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-y: scroll;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #336699;
+        }
+        
+        .section p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .section small {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        .btn {
+            background-color: #336699;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #28527a;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            display: none;
+        }
+        
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 24px;
+            transition: background-color 0.4s;
+        }
+        
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            bottom: 3px;
+            left: 3px;
+            transition: transform 0.4s;
+        }
+        
+        input:checked+.slider {
+            background-color: #336699;
+        }
+        
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+        
+        .status {
+            display: inline-block;
+            background-color: #00cc66;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+        }
+        
+        .status.disabled {
+            background-color: #ff6666;
+        }
+        
+        .btn-small {
+            font-size: 0.85rem;
+            padding: 10px 16px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 15px;
+        }
+        
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        
+        .close-modal {
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            background-color: #336699;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        /* Media Queries */
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin: 20px auto;
+            }
+            .section {
+                padding: 15px;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Save Activity Logs Section -->
+        <div class="section">
+            <h3>Save my Activity Logs</h3>
+            <p>You can save all your activity logs including unusual activity detected.</p>
+            <label class="toggle-switch">
+            <input type="checkbox" id="activityLogToggle" checked>
+            <span class="slider"></span>
+        </label>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="section">
+            <h3>Change Password</h3>
+            <p>Set a unique password to protect your account.</p>
+            <small>Last changed: Oct 2, 2019</small><br><br>
+            <button class="btn" id="changePasswordBtn">Change Password</button>
+        </div>
+
+        <!-- 2 Factor Auth Section -->
+        <div class="section">
+            <h3>2 Factor Auth <span id="status" class="status">Enabled</span></h3>
+            <p>Secure your account with 2FA security. When it is activated, you will need to enter not only your password, but also a special code using an app. You can receive this code via a mobile app.</p>
+            <button class="btn btn-small" id="disable2faBtn">Disable</button>
+        </div>
+
+        <!-- Auto Logout Section -->
+        <div class="section">
+            <h3>Auto Logout</h3>
+            <p>Set an auto logout time to disconnect your account from all sessions.</p>
+            <button class="btn btn-small" id="updateLogoutBtn">Update</button>
+        </div>
+    </div>
+
+    <!-- Modal for Change Password -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h3>Change Password</h3>
+            <input type="password" placeholder="Enter new password" id="newPassword">
+            <input type="password" placeholder="Confirm new password" id="confirmPassword">
+            <button class="close-modal" id="closePasswordModal">Cancel</button>
+            <button class="submit-btn" id="submitPasswordChange">Change</button>
+        </div>
+    </div>
+
+    <!-- Modal for Auto Logout Update -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <h3>Set Auto Logout Time</h3>
+            <input type="number" placeholder="Enter time in minutes" id="logoutTime">
+            <button class="close-modal" id="closeLogoutModal">Cancel</button>
+            <button class="submit-btn" id="submitLogoutUpdate">Update</button>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide modals for change password and update logout
+        const passwordModal = document.getElementById('passwordModal');
+        const logoutModal = document.getElementById('logoutModal');
+
+        document.getElementById('changePasswordBtn').addEventListener('click', function() {
+            passwordModal.style.display = 'flex';
+        });
+
+        document.getElementById('closePasswordModal').addEventListener('click', function() {
+            passwordModal.style.display = 'none';
+        });
+
+        document.getElementById('submitPasswordChange').addEventListener('click', function() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (newPassword && newPassword === confirmPassword) {
+                alert('Password changed successfully!');
+                passwordModal.style.display = 'none';
+            } else {
+                alert('Passwords do not match.');
+            }
+        });
+
+        document.getElementById('updateLogoutBtn').addEventListener('click', function() {
+            logoutModal.style.display = 'flex';
+        });
+
+        document.getElementById('closeLogoutModal').addEventListener('click', function() {
+            logoutModal.style.display = 'none';
+        });
+
+        document.getElementById('submitLogoutUpdate').addEventListener('click', function() {
+            const logoutTime = document.getElementById('logoutTime').value;
+            if (logoutTime) {
+                alert('Auto logout time updated to ' + logoutTime + ' minutes.');
+                logoutModal.style.display = 'none';
+            } else {
+                alert('Please enter a valid time.');
+            }
+        });
+
+        // Disable 2FA functionality
+        const status = document.getElementById('status');
+        document.getElementById('disable2faBtn').addEventListener('click', function() {
+            if (status.textContent === 'Enabled') {
+                if (confirm('Are you sure you want to disable 2FA?')) {
+                    status.textContent = 'Disabled';
+                    status.classList.add('disabled');
+                    alert('2 Factor Authentication has been disabled.');
+                }
+            } else {
+                alert('2FA is already disabled.');
+            }
+        });
+
+        // Close modal when clicking outside of modal
+        window.onclick = function(event) {
+            if (event.target == passwordModal) {
+                passwordModal.style.display = 'none';
+            } else if (event.target == logoutModal) {
+                logoutModal.style.display = 'none';
+            }
+        };
+    </script>
+
+</body>
+
+</html>

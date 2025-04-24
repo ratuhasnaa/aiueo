@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFFFFF;
+            color: #336699;
+            padding: 20px;
+            margin: 0;
+        }
+        .invoice-container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .invoice-title {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .invoice-info {
+            text-align: right;
+        }
+        .invoice-info h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+        .invoice-info p {
+            margin: 5px 0;
+        }
+        .customer-info {
+            margin-bottom: 20px;
+        }
+        .customer-info p {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #336699;
+            color: white;
+        }
+        td {
+            color: #336699;
+        }
+        .total-container {
+            text-align: right;
+        }
+        .total-container td {
+            padding: 10px;
+            font-weight: bold;
+        }
+        .print-button {
+            background-color: #336699;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+        .print-button:hover {
+            background-color: #285a8e;
+        }
+        .print-button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <div class="invoice-title">INVOICE</div>
+            <div class="invoice-info">
+                <h3>Invoice ID: 66K5W3</h3>
+                <p>Date: 26 Jan, 2020</p>
+            </div>
+        </div>
+
+        <div class="customer-info">
+            <h3>Invoice to:</h3>
+            <p>Gregory Anderson</p>
+            <p>House #65, 4328 Marion Street</p>
+            <p>Newbury, VT 05051</p>
+            <p>Phone: +012 8764 556</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ITEM ID</th>
+                    <th>DESCRIPTION</th>
+                    <th>PRICE</th>
+                    <th>HOUR</th>
+                    <th>AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>24108054</td>
+                    <td>Meeting - Conceptual App Dashboard - Jacaranda 1</td>
+                    <td>$40.00</td>
+                    <td>5</td>
+                    <td>$200.00</td>
+                </tr>
+                <tr>
+                    <td>24108054</td>
+                    <td>Meeting - Conceptual App Dashboard - Jacaranda 1</td>
+                    <td>$25.00</td>
+                    <td>1</td>
+                    <td>$25.00</td>
+                </tr>
+                <tr>
+                    <td>23604094</td>
+                    <td>Meeting - Conceptual App Dashboard - Jacaranda 1</td>
+                    <td>$131.25</td>
+                    <td>1</td>
+                    <td>$131.25</td>
+                </tr>
+                <tr>
+                    <td>23604094</td>
+                    <td>Meeting - Conceptual App Dashboard - Jacaranda 1t</td>
+                    <td>$78.75</td>
+                    <td>1</td>
+                    <td>$78.75</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="total-container">
+            <tbody>
+                <tr>
+                    <td>Subtotal:</td>
+                    <td>$435.00</td>
+                </tr>
+                <tr>
+                    <td>Processing fee:</td>
+                    <td>$10.00</td>
+                </tr>
+                <tr>
+                    <td>TAX:</td>
+                    <td>$43.50</td>
+                </tr>
+                <tr>
+                    <td>Grand Total:</td>
+                    <td>$478.50</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="print-button-container">
+            <button class="print-button" onclick="window.print()">Print</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Report</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #336699;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+        }
+
+        /* Container */
+        .table-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        /* Title Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            color: #336699;
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .section-title p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* Table Styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table thead th {
+            background-color: #336699;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .table tbody td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f9fbfd;
+        }
+
+        .table-striped tbody tr:hover {
+            background-color: #eef4fa;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #336699;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #285a82;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #b52a25;
+        }
+
+        .btn-info {
+            background-color: #5bc0de;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #31b0d5;
+        }
+
+        .btn-sm {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Booking Management System</h1>
+        <p>Comprehensive Report of Bookings in the System</p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="container table-container">
+        <!-- Title -->
+        <div class="section-title">
+            <h2>Booking Report</h2>
+            <p>Manage all booking records in one place.</p>
+        </div>
+
+        <!-- Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Room ID</th>
+                    <th>Room Type</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data Dummy -->
+                <tr>
+                    <td>1</td>
+                    <td>101101</td>
+                    <td>Meeting</td>
+                    <td>01 Jan 2022</td>
+                    <td>02 Jan 2022</td>
+                    <td>Rp 12,000,000</td>
+                    <td>Paid</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>102102</td>
+                    <td>Incentives</td>
+                    <td>03 Jan 2022</td>
+                    <td>04 Jan 2022</td>
+                    <td>Rp 8,000,000</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>103103</td>
+                    <td>Convention</td>
+                    <td>05 Jan 2022</td>
+                    <td>06 Jan 2022</td>
+                    <td>Rp 6,000,000</td>
+                    <td>Paid</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>104104</td>
+                    <td>Exhibition</td>
+                    <td>07 Jan 2022</td>
+                    <td>08 Jan 2022</td>
+                    <td>Rp 15,000,000</td>
+                    <td>Paid</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>105105</td>
+                    <td>Meeting</td>
+                    <td>09 Jan 2022</td>
+                    <td>10 Jan 2022</td>
+                    <td>Rp 5,000,000</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>106106</td>
+                    <td>Incentives</td>
+                    <td>11 Jan 2022</td>
+                    <td>12 Jan 2022</td>
+                    <td>Rp 22,000,000</td>
+                    <td>Paid</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="viewDetails(this)">View</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deleteRow(button) {
+            if (confirm('Are you sure you want to delete this record?')) {
+                const row = button.parentElement.parentElement;
+                row.remove();
+                updateRowNumbers();
+            }
+        }
+
+        function editRow(button) {
+            const row = button.parentElement.parentElement;
+            const cells = row.querySelectorAll('td');
+            const roomID = prompt('Enter new Room ID:', cells[1].textContent);
+            const roomType = prompt('Enter new Room Type:', cells[2].textContent);
+            const fromDate = prompt('Enter new From Date:', cells[3].textContent);
+            const toDate = prompt('Enter new To Date:', cells[4].textContent);
+            const amount = prompt('Enter new Total Amount:', cells[5].textContent);
+            const status = prompt('Enter new Status:', cells[6].textContent);
+
+            if (roomID && roomType && fromDate && toDate && amount && status) {
+                cells[1].textContent = roomID;
+                cells[2].textContent = roomType;
+                cells[3].textContent = fromDate;
+                cells[4].textContent = toDate;
+                cells[5].textContent = amount;
+                cells[6].textContent = status;
+                alert('Record updated successfully!');
+            } else {
+                alert('Update canceled. All fields are required.');
+            }
+        }
+
+        function updateRowNumbers() {
+            const rows = document.querySelectorAll('#tableBody tr');
+            rows.forEach((row, index) => {
+                row.querySelector('td:first-child').textContent = index + 1;
+            });
+        }
+
+        // Function to view details (either payment proof or pending status message)
+        function viewDetails(button) {
+            const row = button.parentElement.parentElement;
+            const status = row.cells[6].textContent;
+
+            if (status === 'Paid') {
+                alert('Bukti pembayaran:\n\n[Contoh bukti pembayaran di sini]');
+            } else if (status === 'Pending') {
+                alert('Informasi pembayaran belum dilakukan.');
+            }
+        }
+    </script>
+</body>
+</html>

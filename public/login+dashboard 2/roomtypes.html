@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #336699;
+            padding: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right img {
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        table th, table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            /* Set fixed width for each column */
+            width: 14.28%; /* Equal distribution across 7 columns */
+        }
+       
+
+/* Specific styling for the status column cells to ensure they align under the header */
+.status {
+    text-align: center; /* Center-align text for status cells */
+    width: 82%; /* Full width to match the column size */
+    display: block; /* Allows taking the full width inside the cell */
+}
+
+
+        table th {
+            background-color: #336699;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        table tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .status.booked {
+            color: #336699;
+        }
+
+        .status.pending {
+            color: orange;
+        }
+
+        .status.open {
+            color: green;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #336699;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #295b7b;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Search bar */
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">Hotel Management</div>
+    <div class="header-right">
+        <span>Administrator</span>
+        <img src="https://via.placeholder.com/40" alt="Profile" />
+    </div>
+</header>
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for room...">
+    </div>
+
+    <div class="filter">
+        <label for="status">Change Status:</label>
+        <select id="status" name="status" onchange="filterTable()">
+            <option value="all">All</option>
+            <option value="booked">Booked</option>
+            <option value="pending">Pending</option>
+            <option value="open">Open</option>
+        </select>
+    </div>
+
+    <table id="roomTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Room No.</th>
+                <th onclick="sortTable(1)">Room Type</th>
+                <th>AC/Non AC</th>
+                <th>Meal</th>
+                <th>Bed Capacity</th>
+                <th>Rent</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>101</td>
+                <td>Single</td>
+                <td>AC</td>
+                <td>None</td>
+                <td>1</td>
+                <td>32.00 USD</td>
+                <td class="status booked tooltip">Booked<span class="tooltiptext">Room is currently booked</span></td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>Single</td>
+                <td>AC</td>
+                <td>Breakfast</td>
+                <td>1</td>
+                <td>35.00 USD</td>
+                <td class="status pending tooltip">Pending<span class="tooltiptext">Room is awaiting confirmation</span></td>
+            </tr>
+            <tr>
+                <td>103</td>
+                <td>Double</td>
+                <td>None</td>
+                <td>Dinner</td>
+                <td>2</td>
+                <td>44.99 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>104</td>
+                <td>Double</td>
+                <td>AC</td>
+                <td>Two</td>
+                <td>2</td>
+                <td>48.99 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>105</td>
+                <td>Deluxe</td>
+                <td>None</td>
+                <td>Lunch</td>
+                <td>2</td>
+                <td>53.99 USD</td>
+                <td class="status booked tooltip">Booked<span class="tooltiptext">Room is currently booked</span></td>
+            </tr>
+            <tr>
+                <td>106</td>
+                <td>Deluxe</td>
+                <td>AC</td>
+                <td>Lunch</td>
+                <td>3</td>
+                <td>53.99 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>107</td>
+                <td>Double</td>
+                <td>None</td>
+                <td>Breakfast</td>
+                <td>2</td>
+                <td>40.99 USD</td>
+                <td class="status booked tooltip">Booked<span class="tooltiptext">Room is currently booked</span></td>
+            </tr>
+            <tr>
+                <td>108</td>
+                <td>Single</td>
+                <td>None</td>
+                <td>Lunch</td>
+                <td>2</td>
+                <td>45.00 USD</td>
+                <td class="status pending tooltip">Pending<span class="tooltiptext">Room is awaiting confirmation</span></td>
+            </tr>
+            <tr>
+                <td>109</td>
+                <td>Deluxe</td>
+                <td>AC</td>
+                <td>Dinner</td>
+                <td>1</td>
+                <td>69.00 USD</td>
+                <td class="status pending tooltip">Pending<span class="tooltiptext">Room is awaiting confirmation</span></td>
+            </tr>
+            <tr>
+                <td>110</td>
+                <td>Double</td>
+                <td>None</td>
+                <td>Breakfast</td>
+                <td>2</td>
+                <td>48.00 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>111</td>
+                <td>Suite</td>
+                <td>AC</td>
+                <td>Breakfast</td>
+                <td>4</td>
+                <td>120.00 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>112</td>
+                <td>Suite</td>
+                <td>AC</td>
+                <td>All Meals</td>
+                <td>4</td>
+                <td>150.00 USD</td>
+                <td class="status booked tooltip">Booked<span class="tooltiptext">Room is currently booked</span></td>
+            </tr>
+            <tr>
+                <td>113</td>
+                <td>Single</td>
+                <td>None</td>
+                <td>None</td>
+                <td>1</td>
+                <td>32.00 USD</td>
+                <td class="status open tooltip">Open<span class="tooltiptext">Room is available</span></td>
+            </tr>
+            <tr>
+                <td>114</td>
+                <td>Double</td>
+                <td>None</td>
+                <td>Dinner</td>
+                <td>2</td>
+                <td>45.00 USD</td>
+                <td class="status pending tooltip">Pending<span class="tooltiptext">Room is awaiting confirmation</span></td>
+            </tr>
+            <tr>
+                <td>115</td>
+                <td>Deluxe</td>
+                <td>AC</td>
+                <td>All Meals</td>
+                <td>3</td>
+                <td>95.00 USD</td>
+                <td class="status booked tooltip">Booked<span class="tooltiptext">Room is currently booked</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Filter table based on status
+    function filterTable() {
+        const statusSelect = document.getElementById('status').value;
+        const rows = document.querySelectorAll('#roomTable tbody tr');
+
+        rows.forEach(row => {
+            const status = row.querySelector('.status').classList[1]; 
+            if (statusSelect === 'all' || status === statusSelect) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Search table based on input
+    function searchTable() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#roomTable tbody tr');
+
+        rows.forEach(row => {
+            const room = row.querySelectorAll('td')[0].innerText.toLowerCase();
+            if (room.includes(input)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // Sort table based on column
+    function sortTable(n) {
+        const table = document.getElementById('roomTable');
+        let rows = Array.from(table.rows).slice(1);
+        let sorted = rows.sort((row1, row2) => {
+            const cell1 = row1.cells[n].innerText.toLowerCase();
+            const cell2 = row2.cells[n].innerText.toLowerCase();
+            return cell1.localeCompare(cell2);
+        });
+
+        sorted.forEach(row => table.appendChild(row));
+    }
+</script>
+
+</body>
+</html>

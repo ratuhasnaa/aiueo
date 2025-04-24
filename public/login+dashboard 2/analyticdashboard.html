@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MICE Analytics Dashboard</title>
+    <style>
+        /* CSS Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .navbar {
+            background-color: #336699;
+            padding: 1rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+        
+        .filters .btn {
+            background-color: #ffffff;
+            color: #336699;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            margin: 0 0.3rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 13px;
+        }
+        
+        .filters .btn:hover {
+            background-color: #dddddd;
+        }
+        
+        .container {
+            padding: 2rem;
+        }
+        
+        .overview {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .card {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        
+        .metric {
+            margin: 1rem 0;
+        }
+        
+        .increase {
+            color: green;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .decrease {
+            color: red;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .chart {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .table th,
+        .table td {
+            padding: 0.5rem;
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+        
+        .table th {
+            background-color: #f9f9f9;
+            font-weight: normal;
+        }
+        /* Adjust chart canvas size */
+        
+        .chart canvas {
+            max-height: 180px;
+            width: 100%;
+        }
+        
+        .traffic-channel-chart {
+            width: 45%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="navbar">
+            <h1>MICE Analytics Dashboard</h1>
+            <div class="filters">
+                <button class="btn period-btn" id="7d">7 D</button>
+                <button class="btn period-btn" id="1m">1 M</button>
+                <button class="btn period-btn" id="3m">3 M</button>
+                <button class="btn main-btn" id="last-30">Last 30 Days</button>
+                <button class="btn main-btn" id="reports">Reports</button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <section class="overview">
+            <div class="card">
+                <h2>Website Performance</h2>
+                <div class="metric">
+                    <p>Bounce Rate (avg): 23.59% <span class="increase">↑ 4.5%</span></p>
+                    <p>Pageviews (avg): 5.48 <span class="decrease">↓ -1.48%</span></p>
+                    <p>New Users (avg): 549 <span class="increase">↑ 6.8%</span></p>
+                    <p>Time on Site (avg): 3m 35s <span class="increase">↑ 1.4%</span></p>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Traffic Channel</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>Sessions</th>
+                            <th>Prev Sessions</th>
+                            <th>Change</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic Search</td>
+                            <td>4,305</td>
+                            <td>4,129</td>
+                            <td><span class="increase">4.29%</span></td>
+                            <td>📈</td>
+                        </tr>
+                        <tr>
+                            <td>Social Media</td>
+                            <td>859</td>
+                            <td>936</td>
+                            <td><span class="decrease">-15.8%</span></td>
+                            <td>📉</td>
+                        </tr>
+                        <tr>
+                            <td>Referrals</td>
+                            <td>482</td>
+                            <td>793</td>
+                            <td><span class="decrease">-41.3%</span></td>
+                            <td>📉</td>
+                        </tr>
+                        <tr>
+                            <td>Others</td>
+                            <td>138</td>
+                            <td>97</td>
+                            <td><span class="increase">12.6%</span></td>
+                            <td>📈</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="chart">
+            <div class="card traffic-channel-chart">
+                <h2>Traffic Channel</h2>
+                <canvas id="trafficChannelChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Users by Country</h2>
+                <canvas id="usersByCountryChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // JavaScript code for Chart.js and button interactivity
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctxTrafficChannel = document.getElementById('trafficChannelChart').getContext('2d');
+            const ctxUsersByCountry = document.getElementById('usersByCountryChart').getContext('2d');
+
+            // Doughnut chart for Traffic Channel
+            new Chart(ctxTrafficChannel, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Organic Search', 'Social Media', 'Referrals', 'Others'],
+                    datasets: [{
+                        data: [65, 15, 10, 10],
+                        backgroundColor: ['#336699', '#4CAF50', '#FF9800', '#FFC107']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Doughnut chart for Users by Country
+            new Chart(ctxUsersByCountry, {
+                type: 'doughnut',
+                data: {
+                    labels: ['United States', 'Canada', 'Mexico', 'Others'],
+                    datasets: [{
+                        data: [70, 15, 10, 5],
+                        backgroundColor: ['#4CAF50', '#FF9800', '#FFC107', '#2196F3']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Button interactivity
+            document.querySelectorAll('.period-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    alert(`Loading data for period: ${button.id}`);
+                });
+            });
+
+            document.getElementById('last-30').addEventListener('click', () => {
+                alert('Loading data for the last 30 days');
+            });
+
+            document.getElementById('reports').addEventListener('click', () => {
+                alert('Opening reports section');
+            });
+        });
+    </script>
+</body>
+
+</html>

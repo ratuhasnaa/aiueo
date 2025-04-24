@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        .image-section, .info-section {
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #336699;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #285580;
+        }
+        .result {
+            display: none;
+        }
+        .result.active {
+            display: block;
+        }
+        .venue-image {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-section">
+        <img src="image.png" alt="Venue" class="venue-image">
+    </div>
+    <div class="info-section">
+        <h2>Swiss–Belinn Bogor</h2>
+        <p>Jl. Pajajaran Indah V, RT.01/RW.14, Baranangsiang, Kec. Bogor Tim., Kota Bogor, Jawa Barat 16143</p>
+        <button class="button" onclick="showResult()">Post</button>
+    </div>
+
+    <div id="resultSection" class="result">
+        <h3>Thank you for your submission!</h3>
+        <p>Your venue details have been posted successfully.</p>
+    </div>
+</div>
+
+<script>
+    function showResult() {
+        document.getElementById('resultSection').classList.add('active');
+    }
+</script>
+
+</body>
+</html>

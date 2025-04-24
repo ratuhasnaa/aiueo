@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffff;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #336699;
+        }
+
+        .table thead th {
+            background-color: #336699;
+            color: white;
+            text-align: center;
+        }
+
+        .table tbody td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .search-bar {
+            width: 300px;
+            margin-bottom: 20px;
+            margin-left: auto;
+        }
+
+        .actions-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-primary {
+            background-color: #336699;
+            border-color: #336699;
+        }
+
+        .btn-primary:hover {
+            background-color: #285a82;
+            border-color: #285a82;
+        }
+
+        .pagination {
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .actions-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .search-bar {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <h1 class="my-4">Expenses List</h1>
+    <p>Here is our various expenses list.</p>
+
+    <!-- Search Bar -->
+    <div class="search-bar ml-auto">
+        <input type="text" class="form-control" placeholder="Search..." id="searchInput">
+    </div>
+
+    <!-- Actions Bar -->
+    <div class="actions-bar">
+        <div>
+            <select class="form-control d-inline w-auto" id="bulkAction">
+                <option value="none">Bulk Action</option>
+                <option value="edit">Edit</option>
+                <option value="delete">Delete</option>
+            </select>
+            <button class="btn btn-primary" onclick="applyBulkAction()">Apply</button>
+        </div>
+        <div>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal">Add New Expense</button>
+        </div>
+    </div>
+
+    <!-- Expenses Table -->
+    <table class="table table-striped table-bordered" id="expensesTable">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#KURS150</td>
+                <td>ABC Furniture</td>
+                <td>Kursi Lipat Ballroom</td>
+                <td>01 Jan 2024</td>
+                <td>Rp 5.000.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#MEJA20</td>
+                <td>Furniture Hub</td>
+                <td>Meja Bulat Makan</td>
+                <td>05 Jan 2024</td>
+                <td>Rp 4.500.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#PROJ05</td>
+                <td>Tech Supplies</td>
+                <td>Proyektor</td>
+                <td>10 Jan 2024</td>
+                <td>Rp 15.000.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#AIR200</td>
+                <td>Water Co.</td>
+                <td>Air Mineral</td>
+                <td>12 Jan 2024</td>
+                <td>Rp 1.000.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#KIP10</td>
+                <td>CoolAir</td>
+                <td>Kipas Angin</td>
+                <td>15 Jan 2024</td>
+                <td>Rp 2.500.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#SOUND02</td>
+                <td>Audio Pro</td>
+                <td>Sound System</td>
+                <td>18 Jan 2024</td>
+                <td>Rp 12.000.000</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Expense Modal -->
+<!-- Add Expense Modal -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExpenseModalLabel">Add New Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addExpenseForm">
+                    <div class="form-group">
+                        <label for="expenseID">ID</label>
+                        <input type="text" class="form-control" id="ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplierName">Supplier Name</label>
+                        <input type="text" class="form-control" id="supplierName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="text" class="form-control" id="amount" required oninput="formatRupiah(this)">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveNewExpense()">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Format input amount menjadi Rupiah
+    function formatRupiah(element) {
+        let value = element.value.replace(/[^,\d]/g, '').toString(); // Hanya izinkan angka dan koma
+        let split = value.split(',');
+        let number = split[0];
+        let formatted = number.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Format angka dengan titik
+
+        if (split[1]) {
+            formatted += ',' + split[1].substring(0, 2); // Batasi 2 desimal
+        }
+
+        element.value = 'Rp ' + formatted; // Tampilkan simbol Rp
+    }
+
+    // Fungsi untuk menyimpan expense baru
+    function saveNewExpense() {
+        const supplierName = document.getElementById('supplierName').value;
+        const description = document.getElementById('description').value;
+        const date = document.getElementById('date').value;
+        const amount = document.getElementById('amount').value;
+
+        if (!supplierName || !description || !date || !amount) {
+            alert("All fields are required.");
+            return;
+        }
+
+        // Menghapus simbol Rp dan format lainnya untuk mengambil nilai asli
+        const rawAmount = amount.replace(/[^0-9]/g, '');
+
+        const newRow = `
+            <tr>
+                <td><input type="checkbox" class="select-row"></td>
+                <td>#${Math.floor(Math.random() * 1000000)}</td>
+                <td>${supplierName}</td>
+                <td>${description}</td>
+                <td>${date}</td>
+                <td>Rp ${parseInt(rawAmount).toLocaleString()}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editExpense(this)">Edit</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteExpense(this)">Delete</button>
+                </td>
+            </tr>`;
+
+        document.querySelector('#expensesTable tbody').insertAdjacentHTML('beforeend', newRow);
+        $('#addExpenseModal').modal('hide');
+    }
+
+    // Edit Expense
+    function editExpense(button) {
+        const row = button.closest('tr');
+        const cells = row.getElementsByTagName('td');
+        document.getElementById('supplierName').value = cells[2].innerText;
+        document.getElementById('description').value = cells[3].innerText;
+        document.getElementById('date').value = cells[4].innerText;
+        document.getElementById('amount').value = cells[5].innerText;
+        $('#addExpenseModal').modal('show');
+    }
+
+    // Delete Expense
+    function deleteExpense(button) {
+        if (confirm("Are you sure you want to delete this expense?")) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+    }
+     // Fungsi untuk melakukan pencarian
+     document.getElementById('searchInput').addEventListener('input', function() {
+        const searchQuery = this.value.toLowerCase(); // Ambil nilai pencarian dan ubah menjadi huruf kecil
+        const rows = document.querySelectorAll('#expensesTable tbody tr'); // Ambil semua baris tabel
+
+        rows.forEach(function(row) {
+            const supplierName = row.cells[2].innerText.toLowerCase(); // Ambil nama supplier
+            const description = row.cells[3].innerText.toLowerCase(); // Ambil deskripsi
+
+            // Periksa apakah nama supplier atau deskripsi mengandung kata kunci pencarian
+            if (supplierName.includes(searchQuery) || description.includes(searchQuery)) {
+                row.style.display = ''; // Tampilkan baris jika cocok
+            } else {
+                row.style.display = 'none'; // Sembunyikan baris jika tidak cocok
+            }
+        });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

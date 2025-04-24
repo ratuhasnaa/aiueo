@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Settings</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #336699;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #336699;
+        }
+        
+        small {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #336699;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #285580;
+        }
+        /* Scroll styling */
+        
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        body::-webkit-scrollbar-thumb {
+            background: #336699;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Email Settings</h1>
+        <p>These settings help you modify your e-mail.</p>
+
+        <form id="settingsForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email" required>
+                <small>Specify the email of your hotel.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <small>Specify the email password.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="smtp-host">SMTP Host</label>
+                <input type="text" id="smtp-host" placeholder="Enter SMTP host" required>
+                <small>Specify the SMTP host of your email address.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="smtp-port">SMTP Port</label>
+                <input type="number" id="smtp-port" placeholder="Enter SMTP port" required>
+                <small>Specify the email SMTP port.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="encryption">SMTP Encryption</label>
+                <select id="encryption" required>
+                    <option value="None">None</option>
+                    <option value="SSL">SSL</option>
+                    <option value="TLS">TLS</option>
+                </select>
+                <small>Specify the encryption of your hotel email.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="signature">Email Signature</label>
+                <textarea id="signature" rows="3" placeholder="Enter email signature"></textarea>
+                <small>Optional email signature for outgoing emails.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="reply-to">Reply-To Email</label>
+                <input type="email" id="reply-to" placeholder="Enter reply-to email" required>
+                <small>Specify the reply-to email address.</small>
+            </div>
+
+            <button type="button" onclick="submitForm()">Update</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const smtpHost = document.getElementById('smtp-host').value;
+            const smtpPort = document.getElementById('smtp-port').value;
+            const encryption = document.getElementById('encryption').value;
+            const signature = document.getElementById('signature').value;
+            const replyTo = document.getElementById('reply-to').value;
+
+            if (email && password && smtpHost && smtpPort && encryption && replyTo) {
+                alert("Settings updated successfully!");
+                console.log("Email:", email);
+                console.log("Password:", password);
+                console.log("SMTP Host:", smtpHost);
+                console.log("SMTP Port:", smtpPort);
+                console.log("Encryption:", encryption);
+                console.log("Signature:", signature);
+                console.log("Reply-To:", replyTo);
+            } else {
+                alert("Please fill out all required fields.");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Admin Dashboard</title>
+    <style>
+        /* General Styles */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            /* Light background */
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+            /* Ensures the container takes full height */
+        }
+        /* Sidebar */
+        
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: #336699;
+            color: white;
+            overflow-y: auto; /* Enables scrolling */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar ul li a,
+        .dropdown-btn {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            /* Set the same font size for all items */
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar ul li a:hover,
+        .dropdown-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            /* Subtle white background on hover */
+        }
+        
+        .dropdown-content {
+            display: none;
+            padding-left: 20px;
+        }
+        
+        .dropdown-content li a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .dropdown-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .dropdown-btn::after {
+            content: '▼';
+            color: #ffffff;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        
+        .dropdown-btn.active::after {
+            content: '▲';
+        }
+        /* Main content */
+        
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .top-nav {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+        }
+        
+        .top-nav input[type="text"] {
+            width: 300px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .top-nav .profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .top-nav .profile img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .top-nav .profile span {
+            font-size: 14px;
+            color: #333;
+        }
+        /* Card styles */
+        
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .chart-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        /* Additional Card Styling */
+        
+        .card .info {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .card .info p {
+            margin: 0;
+            margin-bottom: 5px;
+        }
+        /* Grid layout for main content */
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        /* Modal styles */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            width: 300px;
+        }
+        
+        .modal-content h4 {
+            margin-top: 0;
+        }
+        
+        .modal-content .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .post-button {
+            padding: 10px 20px;
+            background-color: #336699;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .post-button:hover {
+            background-color: #285580;
+        }
+        /* Media query for responsiveness */
+        
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                box-shadow: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .top-nav input[type="text"] {
+                width: 100%;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard22.css"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="editvenue.html">Edit Venue</a></li>
+                <li><a href="addrooms.html">All Rooms</a></li>  
+                </li>
+                <!-- Dropdown for "Reports" -->
+                <li>
+                    <div class="dropdown-btn">Reports</div>
+                    <ul class="dropdown-content">
+                        <li><a href="stocks.html">Stocks</a></li>
+                        <li><a href="expenses.html">Expenses</a></li>
+                        <li><a href="bookings.html">Booking</a></li>
+                        <li><a href="pmethods.html">Payment Methods</a></li>
+                    </ul>
+                        <li><a href="calendar.html">Calendar</a></li>
+                         <li><a href="generalsetting.html">General Setting</a></li>
+
+
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <div class="top-nav">
+                <input type="text" placeholder="Search">
+                <div class="profile">
+                    <img src="profile1.jpg" alt="Profile Picture">
+                    <span>Mitra Swiss Bell-Inn</span>
+                </div>
+            </div>
+
+            <!-- Grid Container for Cards -->
+            <div class="grid-container">
+                <!-- Revenue Card -->
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <div class="chart-container">
+                        <div>
+                            <p>IDR 2,852,000</p>
+                            <p><span style="color: #336699;">⬆ 2.1% vs last week</span></p>
+                            <p>Sales from 1–18 Nov, 2024</p>
+                        </div>
+                        <a href="viewreport.html" style="text-decoration: none;">
+                            <button style="background-color: #336699; color: #fff; padding: 10px; border: none; border-radius: 5px;">View Report</button>
+                        </a>
+                    </div>
+                    <canvas id="revenueChart" style="width: 200%; height: 200px; margin-top: 10px;"></canvas>
+                </div>
+
+                <!-- Rating Card -->
+                <div class="card">
+                    <h3>Their Rating</h3>
+                    <div class="chart-container">
+                        <canvas id="ratingChart" style="width: 100%; height: 200px;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Monthly Statistics Card -->
+<div class="card monthly-stats">
+    <h3>Monthly Statistics</h3>
+    <div class="info">
+        <p><strong>Total Bookings:</strong> 5</p>
+        <p><strong>New Reviews:</strong> 2</p>
+        <p><strong>Revenue Growth:</strong> 2.1%</p>
+        <p><strong>Overall Rating:</strong> 4.5/5</p>
+        <p><strong>Cancelled Bookings:</strong> 0</p>
+        <!-- New item -->
+        <p><strong>Average Booking Duration:</strong> 1 day</p>
+        <!-- New item -->
+        <p><strong>Peak Booking Time:</strong> 9:00 AM</p>
+        <!-- New item -->
+        <p><strong>Most Popular Room:</strong> Floress Ballroom</p>
+        <!-- New item -->
+        <p><strong>Type Of Room:</strong> Jacaranda</p>
+    </div>
+</div>
+
+<!-- Simple Event Management Dashboard -->
+<div class="card event-summary">
+    <h3>Event Summary</h3>
+    <p><b>Total Events:</b> 3</p>
+    <p><b>Upcoming Events:</b> 1</p>
+    <p><b>Popular Event Type:</b> Meeting</p>
+</div>
+
+<style>
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 16px;
+        background-color: #fff;
+    }
+
+    .monthly-stats {
+        background-color: #f9f9f9;
+        border-left: 5px solid #336699; /* Green border for Monthly Stats */
+    }
+
+    .event-summary {
+        background-color: #f9f9f9;
+        border-left: 5px solid #336699; /* Blue border for Event Summary */
+    }
+
+    .card h3 {
+        color: #333;
+        font-size: 1.3em;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    .info p {
+        font-size: 0.95em;
+        margin: 6px 0;
+    }
+
+    .info p strong {
+        color: #333;
+    }
+
+    .card p {
+        font-size: 0.95em;
+        color: #555;
+        margin: 6px 0;
+    }
+
+    .card:hover {
+        background-color: #e8f4f8; /* Slight hover effect */
+        transition: background-color 0.3s;
+    }
+</style>
+
+
+</div>
+
+
+    <script>
+        // Chart.js initialization for Revenue
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['01', '02', '03', '04', '05', '06', '07'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [1000, 2000, 1500, 2500, 3000, 2200, 2800],
+                    borderColor: '#336699',
+                    /* Updated chart color */
+                    backgroundColor: 'rgba(51, 102, 153, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Chart.js initialization for Ratings
+        const ratingCtx = document.getElementById('ratingChart').getContext('2d');
+        new Chart(ratingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Ratings',
+                    data: [4.5, 4.2, 4.8, 4.6, 4.3, 4.7, 4.4],
+                    backgroundColor: '#336699',
+                    /* Updated chart color */
+                    borderColor: '#336699',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Dropdown toggle
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const dropdown = btn.nextElementSibling;
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                btn.classList.toggle('active');
+            });
+        });
+
+        // Modal functionality
+        const postButton = document.getElementById('postButton');
+        const modal = document.getElementById('modal');
+        const closeButton = document.getElementById('closeButton');
+        const closeSpan = document.querySelector('.close-btn');
+
+        postButton.addEventListener('click', () => {
+            modal.style.display = 'flex'; // Show modal
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none'; // Hide modal when clicking "Close"
+        });
+
+        closeSpan.addEventListener('click', () => {
+            modal.style.display = 'none'; // Hide modal when clicking "X"
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none'; // Hide modal if clicking outside of it
+            }
+        });
+    </script>
+</body>
+
+</html>

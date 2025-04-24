@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Settings</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #336699;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        form {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        label {
+            font-size: 1rem;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="url"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="file"]:focus {
+            border-color: #336699;
+        }
+        
+        .choose-file-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        
+        .choose-file-wrapper input[type="file"] {
+            flex: 1;
+            padding: 12px;
+        }
+        
+        .choose-file-wrapper button {
+            background-color: #336699;
+            color: #fff;
+            padding: 12px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .choose-file-wrapper button:hover {
+            background-color: #28527a;
+        }
+        
+        .switch {
+            display: flex;
+            align-items: center;
+        }
+        
+        .switch input {
+            margin-right: 10px;
+        }
+        
+        .switch-label {
+            display: flex;
+            align-items: center;
+        }
+        
+        .switch input[type="checkbox"] {
+            width: 44px;
+            height: 24px;
+            -webkit-appearance: none;
+            background: #ddd;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            border-radius: 24px;
+            transition: background-color 0.4s;
+        }
+        
+        .switch input[type="checkbox"]:checked {
+            background-color: #336699;
+        }
+        
+        .switch input[type="checkbox"]:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: white;
+            top: 3px;
+            left: 3px;
+            transition: 0.4s;
+        }
+        
+        .switch input[type="checkbox"]:checked:before {
+            transform: translateX(20px);
+        }
+        
+        .update-btn {
+            grid-column: 1 / -1;
+            padding: 12px 20px;
+            background-color: #336699;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .update-btn:hover {
+            background-color: #28527a;
+        }
+        
+        @media (max-width: 768px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>General Settings</h2>
+        <form id="settingsForm">
+            <label for="hotelName">Hotel Name</label>
+            <input type="text" id="hotelName" placeholder="Swiss Bell-Inn">
+
+            <label for="hotelLogo">Hotel Logo</label>
+            <div class="choose-file-wrapper">
+                <input type="file" id="hotelLogo">
+                <button type="button" id="browseBtn">Browse</button>
+            </div>
+
+            <label for="hotelAddress">Hotel Address</label>
+            <input type="text" id="hotelAddress" placeholder="">
+
+            <label for="copyright">Copyright</label>
+            <input type="text" id="copyright" placeholder="©">
+
+            <label for="mainSite">Main Site</label>
+            <input type="url" id="mainSite" placeholder="https://www.swissbellinn.com">
+
+            <label for="facebook">Facebook</label>
+            <input type="url" id="facebook" placeholder="https://www.facebook.com">
+
+            <label for="instagram">Instagram</label>
+            <input type="url" id="instagram" placeholder="https://www.instagram.com">
+
+            <label for="maintenanceMode" class="switch-label">Maintenance Mode</label>
+            <div class="switch">
+                <input type="checkbox" id="maintenanceMode">
+                <span>Offline</span>
+            </div>
+
+            <button type="submit" class="update-btn">Update</button>
+        </form>
+    </div>
+
+    <script>
+        // File Browse button click event
+        document.getElementById('browseBtn').addEventListener('click', function() {
+            document.getElementById('hotelLogo').click();
+        });
+
+        // Update button submit event
+        document.getElementById('settingsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for demo purposes
+
+            // Display a confirmation alert
+            alert('Settings have been updated successfully!');
+
+            // You can add logic here to handle form data submission to a server if needed
+        });
+    </script>
+
+</body>
+
+</html>
