@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><!--<![endif]-->
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset="UTF-8">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+	<title>AIUEO | Event Organizer</title>
+
+	<meta name="author" content="themsflat.com">
+
+	<!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Boostrap style -->
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+	<!-- Reponsive -->
+	<link rel="stylesheet" type="text/css" href="stylesheets/responsive.css">
+
+	<!-- Favicon -->
+    <link href="images/page/2-removebg-preview.png" rel="shortcut icon">
+
+	<style>
+		/* Styles same as provided */
+		.login-overlay, .register-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.6);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 9999;
+		}
+		.login-popup-box, .register-popup-box {
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			width: 90%;
+			max-width: 400px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+		.header-container {
+			text-align: right;
+		}
+		.close-button {
+			font-size: 20px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.popup-button {
+			width: 100%;
+			padding: 10px;
+			background: blue;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.popup-button:hover {
+			background: darkblue;
+		}
+		input {
+			width: 100%;
+			padding: 10px;
+			margin: 10px 0;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		.alert {
+			margin: 10px 0;
+			padding: 10px;
+			color: red;
+			background: #ffe6e6;
+			border-radius: 5px;
+		}
+		</style>
+</head>
+	<body class="header_sticky">
+		
+		<!-- Preloader -->
+		<div class="preloader">
+			<div class="clear-loading loading-effect-2">
+				<span></span>
+			</div>
+		</div><!-- /.preloader -->
+
+		<div class="header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="header-wrap">
+							<div id="logo">
+								<a href="index.html">
+									<img src="images/page/logo1.png" alt="Logo">
+								</a>
+							</div>
+							<div class="nav-wrap">
+								<nav id="mainnav" class="mainnav">
+									<ul class="menu">
+										<li class="submenu-item">
+											<a href="support.html" title="Customer Support">Customer Support</a>
+										</li>
+										<li class="submenu-item">
+											<a href="contact.html" title="Contact Us">Contact Us</a>
+										</li>
+										<li class="submenu-item">
+											<a href="https://wa.me/081290396472" title="WhatsApp"><img src="images/page/whatsapp.png" alt="WhatsApp"> 081290396472</a>
+										</li>
+										<li>
+											<a class="button login-button" onclick="showLoginPopup()" title="Log In">Log In</a>
+										</li>
+										<li>
+											<a class="button register-button" onclick="showRegisterPopup()" title="Sign Up">Sign Up</a>
+										</li>
+									</ul>
+								</nav><!-- /.mainnav -->
+								<div class="btn-menu">
+									<span></span>
+								</div><!-- //mobile menu button -->
+							</div><!-- /.nav-wrap -->
+						</div><!-- /.header-wrap -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div><!-- /.header -->
+
+		<section class="page-title style2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-title-heading">
+							Meeting anywhere, everywhere
+						</div>
+						
+						<div class="wrap-box-search">
+							<form action="#" method="get" accept-charset="utf-8">
+								<span>
+									<input type="text" placeholder="What are you looking for?" name="search">
+								</span>
+								<span class="location">
+									<input type="text" placeholder="Location" name="location">
+								</span>
+								<span class="categories new-categories">
+									<span class="ti-angle-down"></span>
+									<select name="categories">
+										<option value="">Select Category</option>
+										<option value="">Office Space</option>
+										<option value="">Coworking</option>
+										<option value="">Virtual Office</option>
+										<option value="">Meeting Rooms</option>
+									</select>
+								</span>
+								<button type="submit" class="search-icon-btn">
+									<img src="images/page/search.png" alt="Search">
+								</button>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="overlay"></div>
+		</section>
+		
+
+		<section class="flat-row flat-imagebox background">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="flat-row-title center">
+							<h2>Flexible Workspace Designed Around Your Needs</h2>
+						</div><!-- /.flat-row-title -->
+						<!-- New Icons Section -->
+						<div class="icons-section">
+							<div class="icon-item icon-item1" id="icon-office-space" onclick="showContent('content-office-space')">
+								<img src="images/page/office1.svg" alt="Office Space">
+								<span>Office Space</span>
+							</div>
+							<div class="icon-item icon-item2" id="icon-coworking" onclick="showContent('content-coworking')">
+								<img src="images/page/coworking.svg" alt="Coworking">
+								<span>Coworking</span>
+							</div>
+							<div class="icon-item icon-item3" id="icon-virtual" onclick="showContent('content-virtual')">
+								<img src="images/page/online.svg" alt="Virtual Office">
+								<span>Virtual Office</span>
+							</div>
+							<div class="icon-item icon-item4" id="icon-meeting-rooms" onclick="showContent('content-meeting-rooms')">
+								<img src="images/page/meeting.svg" alt="Meeting Rooms">
+								<span>Meeting Rooms</span>
+							</div>
+						</div>
+						<div class="center-line"></div> <!-- Centered grey line -->
+					</div>
+				</div><!-- /.col-md-12 -->
+				
+
+
+ <!--------------------------- CONTENT SECTION ---------------------------------------------->
+					<div id="content-office-space" class="content-section active">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+						</div><!-- /.row -->
+						<div class="row">
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COBAIN OFFICE SPACE</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+						</div><!-- /.row -->
+					</div>
+					
+					
+					
+					
+					
+					
+					<div id="content-coworking" class="content-section">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">COWORKING</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">Jacaranda</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">Jacaranda</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+						</div><!-- /.row -->
+					</div>
+
+
+
+
+
+
+					<div id="content-virtual" class="content-section">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">VIRTUAL</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">Jacaranda</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">VIRTUAL</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">VIRTUAL</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+						</div><!-- /.row -->
+					</div>
+					<div id="content-meeting-rooms" class="content-section">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">MEETING ROOMS</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting3.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">Jacaranda</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">MEETING ROOMS</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+							<div class="col-md-3">
+								<div class="imagebox">
+									<div class="box-imagebox">
+										<div class="box-header">
+											<div class="box-image">
+												<img src="images/page/meeting5.jpg" alt="">
+												<a href="#" title="">Preview</a>
+												<div class="overlay"></div>
+											</div>
+										</div><!-- /.box-header -->
+										<div class="box-content">
+											<div class="box-title-rating">
+												<a href="#" title="">MEETING ROOMS</a>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<span class="score">4.5</span>
+												</div>
+											</div>
+											<div class="box-info">
+												<li class="address">Jakarta Pusat</li>
+												<li class="price">Rp 3.000.000</li>
+											</div>
+											<div class="box-buttons">
+												<a href="#" class="button">Book</a>
+											</div>
+										</div>
+									</div><!-- /.box-imagebox -->
+								</div><!-- /.imagebox -->
+							</div><!-- /.col-md-3 -->
+						</div><!-- /.row -->
+					</div>
+			</div><!-- /.container -->
+		</section><!-- /.flat-imagebox style2 -->
+						
+
+		<section class="flat-row flat-iconbox style1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="flat-row-title center">
+							<h2>Trusted Partners</h2>
+						</div><!-- /.flat-row-title -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hotel-logos">
+							<div class="logo logo1"><img src="images/page/kempinski.png" alt="Kempinski"></div>
+							<div class="logo logo2"><img src="images/page/santika.png" alt="Hotel Logo 2"></div>
+							<div class="logo logo3"><img src="images/page/padma-logo.png" alt="Hotel Logo 3"></div>
+							<div class="logo logo4"><img src="images/page/sheraton.png" alt="Hotel Logo 4"></div>
+							<div class="logo logo5"><img src="images/page/borobudur.png" alt="Hotel Logo 5"></div>
+							<div class="logo logo6"><img src="images/page/aston.png" alt="Hotel Logo 6"></div>
+						</div><!-- /.hotel-logos -->
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.flat-iconbox style1 -->
+
+		<!-- Login Popup Overlay -->
+<div class="login-overlay" id="loginOverlay" style="display: none;">
+    <div class="login-popup-box">
+        <div class="header-container">
+            <span class="close-button" onclick="hideLoginPopup()">&times;</span>
+        </div>
+        <h2>Welcome Back to AIUEO</h2>
+
+        <!-- Alert for Errors -->
+        <div class="mb-4 alert alert-danger" style="display: none;" id="loginError">
+            <ul>
+                <li>Error: Invalid email or password</li>
+            </ul>
+        </div>
+
+        <form id="loginForm" onsubmit="submitLogin(event)">
+            <input type="hidden" id="redirect_to_login" name="redirect_to" value="">
+            <input type="email" id="email" name="email" placeholder="Email" required autofocus autocomplete="username">
+            <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password">
+            <button type="submit" class="popup-button">Continue</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sign Up Popup Overlay -->
+<div class="register-overlay" id="registerOverlay" style="display: none;">
+    <div class="register-popup-box">
+        <div class="header-container">
+            <span class="close-button" onclick="hideRegisterPopup()">&times;</span>
+        </div>
+        <h2>Join AIUEO Today</h2>
+
+        <!-- Alert for Errors -->
+        <div class="mb-4 alert alert-danger" style="display: none;" id="registerError">
+            <ul>
+                <li>Error: Please fill all fields correctly</li>
+            </ul>
+        </div>
+
+        <form id="registerForm" onsubmit="submitRegister(event)">
+            <input type="hidden" id="redirect_to_register" name="redirect_to" value="">
+            <input type="text" id="newUsername" name="name" placeholder="Name" required>
+            <input type="email" id="newEmail" name="email" placeholder="Email Address" required>
+            <input type="text" id="newPhone" name="phone" placeholder="Phone Number" required>
+            <input type="password" id="newPassword" name="password" placeholder="Create Password" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+            <button type="submit" class="popup-button">Sign Up</button>
+        </form>
+    </div>
+</div>
+	
+
+
+				
+
+		
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="widget widget-categories">
+							<h3 class="widget-title">Support</h3>
+							<ul class="one-half">
+								<li><a href="#" title="">How to Book</a></li>
+								<li><a href="#" title="">Contact Us</a></li>
+								<li><a href="#" title="">Help Center</a></li>
+								<li><a href="#" title="">About Us</a></li>
+							</ul>
+						</div><!-- /.widget-categories -->
+					</div><!-- /.col-md-3 -->
+					<div class="col-md-3">
+						<div class="widget widget-categories">
+							<h3 class="widget-title">AIUEO</h3>
+							<ul class="one-half">
+								<li><a href="#" title="">Office Space Near You</a></li>
+								<li><a href="#" title="">Coworking Near You</a></li>
+								<li><a href="#" title="">Virtual Office Near You</a></li>
+								<li><a href="#" title="">Meeting Rooms Near You</a></li>
+							</ul>
+						</div><!-- /.widget-categories -->
+					</div><!-- /.col-md-3 -->
+				</div><!-- /.col-md-3 -->
+				<div class="col-md-4">
+					<div class="widget widget-categories">
+						<h3 class="widget-title">Location</h3>
+						<ul class="one-half">
+							<li >Jl. Yasmin Raya No.16 A, RT.01/RW.04, Curugmekar, Kec. Bogor Bar., Kota Bogor, Jawa Barat 16113</li>
+						</ul>
+					</div><!-- /.widget-categories -->
+				</div><!-- /.col-md-3 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</footer><!-- /footer -->
+			
+
+		<div class="button-go-top">
+			<a href="#" title="" class="go-top">
+				<i class="fa fa-chevron-up"></i>
+			</a><!-- /.go-top -->
+		</div><!-- /.button-go-top -->
+		
+		<!-- Javascript -->
+	    <script type="text/javascript" src="javascript/jquery.min.js"></script>
+	    <script type="text/javascript" src="javascript/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="javascript/easing.js"></script>
+	    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtRmXKclfDp20TvfQnpgXSDPjut14x5wk&region=GB"></script>
+   		<script type="text/javascript" src="javascript/gmap3.min.js"></script>
+   		<script type="text/javascript" src="javascript/parallax.js"></script>
+	    <script type="text/javascript" src="javascript/owl.carousel.js"></script>
+	    <script type="text/javascript" src="javascript/main.js"></script>
+		<script type="text/javascript" src="javascript/custom.js"></script>
+		<script type="text/javascript" src="javascript/login.js"></script>
+	</body>
+</html>
