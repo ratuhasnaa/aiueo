@@ -1,0 +1,76 @@
+/* Menu utama */
+ul.menu {
+    display: flex; /* Gunakan Flexbox untuk membuat elemen sejajar */
+    align-items: center; /* Posisikan elemen secara vertikal ke tengah */
+    justify-content: space-between; /* Atur jarak elemen */
+    list-style: none; /* Hilangkan bullet points */
+    margin: 0; /* Hilangkan margin */
+    padding: 0; /* Hilangkan padding */
+}
+
+/* Elemen dalam menu */
+ul.menu > li {
+    margin: 0 10px; /* Jarak horizontal antar item */
+}
+
+/* WhatsApp menu */
+#whatsapp-menu a {
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: #666; /* Warna teks default */
+    display: flex; /* Flexbox untuk elemen dalam WhatsApp */
+    align-items: center; /* Ratakan ikon WhatsApp dan teks secara vertikal */
+    padding: 0px 10px; /* Tambahkan padding */
+}
+
+/* Hover effect pada WhatsApp */
+#whatsapp-menu a:hover {
+    color: black; /* Ubah warna teks menjadi hitam saat hover */
+    background: none; /* Pastikan tidak ada latar belakang */
+}
+
+/* Dropdown toggle */
+.logged-menu .dropdown-toggle {
+    display: flex; /* Flexbox untuk elemen tombol dropdown */
+    align-items: center; /* Sejajarkan teks dan ikon secara vertikal */
+    text-decoration: none;
+    color: black;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Dropdown item styles */
+.logged-menu .dropdown-item {
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+    font: inherit;
+    display: block;
+    background: none; /* Hilangkan background */
+}
+
+.logged-menu .dropdown-item:hover {
+    background: none; /* Hilangkan latar belakang saat hover */
+    color: orange; /* Ubah warna teks saat hover */
+}
+
+/* Atur dropdown menu agar tampil di bawah toggle */
+.logged-menu .dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute; /* Posisi relatif terhadap .logged-menu */
+    top: 100%; /* Tepat di bawah tombol */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+    padding: 5px 0;
+}
+
+/* Tampilkan dropdown saat ada class "show" */
+.logged-menu.show .dropdown-menu {
+    display: block; /* Tampilkan dropdown */
+}

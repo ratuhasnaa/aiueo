@@ -8,6 +8,11 @@
 .env
 .env.backup
 .env.production
+<<<<<<< HEAD
+=======
+.phpactor.json
+.phpunit.result.cache
+>>>>>>> fitur-admin
 Homestead.json
 Homestead.yaml
 auth.json

@@ -1,0 +1,2885 @@
+/** 
+  *	Wrap Box Search
+  * Highlights
+  * Flat Imagebox
+  * Filter
+  * Flat Iconbox Style1
+  * Flat Text Title
+  * Flat Team
+  * Flat Row Title
+  * Flat Main Blog Style2
+  * Flat Introduce
+  * Flat Price
+  * Flat Error
+  * Flat Count
+  * Flat Login
+  * Infobox
+  * Box Search
+  * Box Slider 
+  * Flat Iconbox Style2
+  * Flat Contact
+  * Flat Listing
+  * Flat Title
+  * Flat Explore Detail
+  * Side Bar
+  * Flat Map
+  * Parallax
+  * Go Top
+*/
+
+/* Wrap Box Search
+-------------------------------------------------------------- */
+.wrap-box-search {
+	background-color: #fff;
+	border: 1px solid darkgrey; /* Border color */
+	border-radius: 100px; /* Adjustable radius */
+	padding: 15px 12px;
+	margin: 46px auto; /* Center horizontally and margin top */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap; /* Ensure elements wrap correctly */
+	width: 92%; /* Width of the box */
+	max-width: 1200px; /* Optional: maximum width */
+}
+
+.wrap-box-search form > span {
+	float: left;
+	width: 358px;
+	
+}
+
+.wrap-box-search form > span input {
+	padding-left: 33px;
+	bottom: 2px;
+	
+}
+
+.wrap-box-search form > span.location {
+	width: 301px;
+}
+
+.wrap-box-search form > span.location input {
+	padding-left: 30px;
+	bottom: 2px;
+}
+
+.wrap-box-search form > span.categories.new-categories {
+	width: 332px;
+}
+
+.wrap-box-search form > span.categories.new-categories select {
+	padding-left: 30px;
+	bottom: 2px;
+	font-family: 'Red Hat Display', sans-serif; /* Font family */
+	font-weight: 500; /* Medium weight */
+	color: #2c3e50d6; /* Dark grey color */
+	font-size: 15px; /* Font size */
+}
+
+.wrap-box-search form > span.categories.new-categories span {
+	top: 10px;
+	right: 32px;
+}
+
+.wrap-box-search form > span input,
+.wrap-box-search form > span select {
+	border-color: #fff;
+	
+}
+
+.wrap-box-search form > span {
+	border-right: 1px solid #d9d9d9;
+	margin-top: 5px;
+	position: relative;
+}
+
+.wrap-box-search form > span > span {
+	position: absolute;
+	top: 11px;
+	right: 19px;
+	color: #2c3e50d6; /* Dark grey color */
+	;
+	font-size: 16px;
+}
+
+.wrap-box-search form > span.categories {
+	border-right: 1px solid #fff;
+}
+
+.wrap-box-search form > span.categories:before {
+	content: '';
+	position: absolute;
+}
+
+.wrap-box-search form > span input,
+.wrap-box-search form > span select {
+	margin-bottom: 0;
+	height: 40px;
+}
+
+.wrap-box-search form > span input:focus {
+	border-color: transparent;
+}
+
+/* Search Icon Button */
+.wrap-box-search form button.search-icon-btn {
+	width: 40px; /* Fixed width */
+	height: 40px; /* Fixed height */
+	border-radius: 50%; /* Round background */
+	background-color: #336699; /* Background color */
+	border: none; /* Remove border */
+	display: flex; /* Center the icon */
+	align-items: center;
+	justify-content: center;
+	padding: 0; /* Remove padding */
+}
+
+.wrap-box-search form button.search-icon-btn:hover {
+	background-color: #194466; /* Darker background color on hover */
+}
+
+.wrap-box-search form button.search-icon-btn img {
+	width: 20px; /* Adjust icon size */
+	height: 20px;
+	filter: brightness(0) invert(1); /* Make icon white */
+}
+
+/* Placeholder Styling */
+.wrap-box-search form span input::placeholder {
+	font-family: 'Red Hat Display', sans-serif; /* Font family */
+	font-weight: 500; /* Medium weight */
+	color: #2c3e50d6; /* Dark grey color */
+	font-size: 15px; /* Font size */
+	opacity: 1;
+}
+
+/* Wrap Box Search Style1 */
+.wrap-box-search.style1 {
+	margin-top: 22px;
+}
+
+
+
+
+/* Flat Imagebox */
+.flat-imagebox {
+    padding: 100px 0 108px;
+}
+
+.flat-imagebox .flat-row-title {
+    margin-bottom: 50px;
+	text-align: left;
+}
+
+.flat-main-blog.style2 .flat-row-title {
+    margin-bottom: 8px;
+}
+
+.flat-imagebox .flat-row-title h2 {
+    margin-bottom: 8px;
+	font-weight: 700;
+	color: #333333;
+}
+
+.flat-imagebox.background {
+    background-color: #f8faf6;
+    padding: 100px 0 100px;
+}
+
+.flat-imagebox.style3 {
+    padding: 79px 0 93px;
+}
+
+/*imageboxnya*/
+
+.imagebox.style3,
+.imagebox.style4,
+.wrap-imagebox.style3 .imagebox.style1,
+.wrap-imagebox.style3 .imagebox.style2,
+.comment-area ol.comment-list li.comment {
+    display: none;
+}
+
+.imagebox {
+    height: 350px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: 8px; /* Adjust margin as needed */
+}
+
+.imagebox .box-header .box-image {
+    position: relative;
+}
+
+.imagebox .box-header .box-image a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(1.5);
+    z-index: 99;
+    color: #fff;
+    font-size: 24px;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.imagebox .box-header .box-image:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: rgba(20, 20, 20, 0.353);
+    z-index: 9;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.imagebox:hover .box-header .box-image a,
+.imagebox:hover .box-header .box-image:after {
+    opacity: 1;
+}
+
+.imagebox:hover .box-header .box-image a {
+    transform: translate(-50%, -50%) scaleX(1);
+}
+
+.imagebox .box-content {
+    padding: 10px 15px; /* Adjusted padding */
+    flex: 1; /* Ensure content area grows */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imagebox .box-content .box-title-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px; /* Adjusted margin for spacing */
+}
+
+.imagebox .box-content .box-title-rating a {
+    font-size: 17px;
+    font-weight: 650; /* Semibold */
+    color: #000; /* Black */
+    display: block; /* Ensures block display */
+    margin-right: 8px; /* Space between title and rating */
+    margin-bottom: -10px !important; /* Adjusted space between title and address */
+}
+
+.imagebox .box-content .rating {
+    display: flex;
+    align-items: center;
+}
+
+.imagebox .box-content .rating .fa-star {
+    color: #FFD700; /* Gold star color */
+    margin-right: 3px; /* Space between star and score */
+	margin-top: 5px;
+}
+
+.imagebox .box-content .rating .score {
+    font-size: 13px;
+    font-weight: 650; /* Regular */
+    color: #000; /* Black */
+	margin-top: 5px;
+}
+
+.imagebox .box-content .box-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Adjusted spacing between address and price */
+    align-items: flex-start;
+}
+
+.imagebox .box-content .box-info .address,
+.imagebox .box-content .box-info .price {
+    list-style-type: none; /* Removes bullet points */
+}
+
+.imagebox .box-content .box-info .address {
+    font-size: 14px;
+    font-weight: 300; /* Regular */
+    color: #4a4a4a; /* Dark grey */
+    margin-bottom: 2px; /* Adjusted space below address */
+}
+
+.imagebox .box-content .box-info .price {
+    font-size: 20px;
+    font-weight: 800 !important;
+    color: #336699; /* Green */
+	margin-top: -4px;
+}
+
+.imagebox .box-content .box-desc {
+    margin: 18px 0 13px;
+}
+
+
+/* Imagebox Style5 */
+.imagebox.style5 {
+    position: relative;
+}
+
+.imagebox.style5 .box-image {
+    position: relative;
+    background-color: #2c3e50;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.imagebox.style5 .box-image .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(76, 161, 175, 0.5);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.imagebox.style5:hover .box-image .overlay {
+    opacity: 1;
+}
+
+.imagebox.style5 .box-image img {
+    opacity: 0.5;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.imagebox.style5:hover .box-image img {
+    transform: scale(1.1);
+}
+
+.imagebox.style5 .box-content {
+    padding: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    text-align: center;
+    z-index: 99;
+    transform: translate(-50%, -50%);
+}
+
+.imagebox.style5 .box-content a {
+    font-weight: 500;
+    font-size: 24px;
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+    line-height: 33px;
+}
+
+.imagebox.style5 .box-content a:hover {
+    color: #2c3e50;
+}
+
+/* Additional Styling */
+.wrap-imagebox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Adjust gap between boxes */
+}
+
+.wrap-imagebox .imagebox {
+    flex: 1 1 calc(25% - 30px); /* Ensure four items per row with gap */
+}
+
+.row {
+    margin-bottom: 50px; /* Adjust the value as needed for desired spacing */
+}
+
+/* New button styles */
+.imagebox .box-content .box-buttons {
+    display: flex;
+    margin-top: 20px; /* Adjust spacing above buttons */
+}
+
+.imagebox .box-content .box-buttons .button {
+    font-size: 14px;
+    font-weight: 800; /* Medium weight */
+    background-color: #e65c00;
+    padding: 3px 25px; /* Adjust padding for button */
+    text-align: center;
+    border-radius: 8px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for background color */
+    margin-left: auto; /* Push the button to the right side */
+	color: #fff;
+	border: 2px #e65c00;
+}
+
+.imagebox .box-content .box-buttons .button:hover {
+    background-color: #b24700; /* Darker blue background on hover */
+}
+
+
+ 
+/* Filter
+-------------------------------------------------------------- */
+.filter .filter-title h5 {
+	font-size: 16px;
+	float: left
+}
+
+.filter .filter-title span {
+	float: right;
+	font-size: 16px;
+	color: #000;
+	cursor: pointer;
+}
+
+.filter .select-filter {
+	margin-right: -15px;
+	margin-left: -15px;
+	margin-top: 29px;
+	margin-bottom: 20px;
+}
+
+.filter .select-filter ul.list-filter.quarter {
+	width: 25%;
+	float: left;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.filter .select-filter ul.list-filter.third {
+	float: left;
+	width: 33.333333%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.filter .select-filter ul.list-filter li {
+	cursor: pointer;
+	font-size: 16px;
+	color: #000;
+	margin-bottom: 12px;
+}
+
+.filter .select-filter ul.list-filter li:hover span:before {
+    content: "\e64d";
+}
+
+.filter .select-filter ul.list-filter li:hover,
+.filter .select-filter ul.list-filter li.active {
+	color: #2c3e50;
+}
+
+.filter .select-filter ul.list-filter.quarter li span {
+	padding-right: 21px;
+}
+
+.filter .select-filter ul.list-filter.third li span {
+	padding-right: 20px;
+}
+
+/* Flat Filter Style2 */
+.flat-filter.style2 {
+	margin-right: -18px;
+}
+
+.flat-filter.style2 .filter-result {
+    border: none;
+    padding: 31px 0;
+    margin-bottom: 53px;
+}
+
+.filter .select-filter ul.list-filter.one-half {
+	float: left;
+	width: 50%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.filter .select-filter ul.list-filter.one-half:nth-child(2) {
+	padding-left: 15px;
+}
+
+.filter .select-filter ul.list-filter.one-half li span {
+	padding-right: 20px;
+}
+
+.filter .select-filter .more-filter {
+    margin-top: 8px;
+    margin-left: 12px;
+    font-size: 16px;
+}
+
+/* Filter Result */
+.filter-result {
+	border-top: 1px solid #000;
+	padding: 20px 0;
+	margin-bottom: 57px;
+}
+
+.filter-result .result {
+	float: left;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.filter-result ul.arrange {
+	float: right;
+}
+
+.filter-result ul.arrange li {
+	display: inline-block;
+	margin-left: 22px;
+	color: #c2c2c2;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.filter-result ul.arrange li.active {
+	color: #4ca1af;
+}
+
+/* Filter Style2 */
+.filter.style2 .select-filter {
+	margin-bottom: 12px;
+}
+
+/* Filter Result Style2 */
+.filter-result.style2 {
+	padding: 29px 0;
+	margin-bottom: 48px;
+}
+
+/* Flat Iconbox Style1
+-------------------------------------------------------------- */
+.flat-iconbox.style1 {
+	padding: 83px 0 93px;
+}
+
+.flat-iconbox.style1 .flat-row-title {
+	margin-bottom: 60px;
+}
+
+/* Iconbox Style1 */
+.iconbox {
+    text-align: center;
+}
+
+.iconbox .box-header .iconbox-icon {
+    height: 60px;
+    line-height: 55px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.iconbox:hover .box-header .iconbox-icon {
+    -webkit-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.iconbox .box-content {
+    padding: none;
+}
+
+.iconbox .box-content h4.box-title {
+    margin: 29px 0 15px;
+    font-family: 'Red Hat Display';
+    font-size: 30px;
+}
+
+.iconbox .box-content .box-desc {
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* Iconbox Style1 Booking */
+.iconbox-booking {
+    text-align: center;
+}
+
+.iconbox-booking .box-header .iconbox-booking-icon {
+    height: 60px;
+    line-height: 55px;
+    transition: all 0.3s ease-in-out;
+}
+
+.iconbox-booking:hover .box-header .iconbox-booking-icon {
+    transform: rotateY(-180deg);
+}
+
+.iconbox-booking .box-content {
+    padding: none;
+}
+
+.iconbox-booking .box-content h4.box-title {
+    margin: 29px 0 15px;
+    font-family: 'Red Hat Display';
+    font-size: 30px;
+}
+
+.iconbox-booking .box-content .box-desc {
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* Custom Styles */
+.left-column {
+    padding-right:90px;
+}
+
+.right-column {
+    padding-left: 15px;
+}
+
+
+/* Additional styles for hotel logos */
+/* Additional styles for hotel logos */
+.hotel-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four logos per row */
+    gap: 20px; /* Adjust the gap between logos as needed */
+    justify-items: center; /* Center logos horizontally */
+    align-items: center; /* Center logos vertically */
+}
+
+.hotel-logos .logo img {
+    max-width: 80%; /* Reduce the logo size */
+    height: auto;
+}
+
+/* Ensure the logos resize appropriately on smaller screens */
+@media (max-width: 768px) {
+    .hotel-logos {
+        grid-template-columns: repeat(2, 1fr); /* Two logos per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hotel-logos {
+        grid-template-columns: 1fr; /* One logo per row on very small screens */
+    }
+}
+
+
+/* Flat Text Title
+-------------------------------------------------------------- */
+.flat-text-title {
+	background-color: #4ca1af;
+	padding: 74px 0 77px;
+}
+
+.flat-text-title .text-title h2 {
+	color: #fff;
+	font-size: 30px;
+}
+
+/* Flat Row Title
+-------------------------------------------------------------- */
+.flat-row-title {
+	margin-bottom: 35px;
+}
+
+.flat-row-title h2 {
+	font-family: 'Red Hat Display';
+	font-size: 35px;
+	font-weight: 700;
+	margin-bottom: none;
+	text-align: left;
+}
+
+.flat-row-title p {
+	font-size: 16px;
+	color:#333;
+	font-weight: 500;
+}
+
+/* Flat Iconbox Gallery Style1 */
+.flat-iconbox-gallery.style1 {
+    padding: 20px 0 93px;
+}
+
+.flat-iconbox-gallery.style1 .flat-row-title {
+    margin-bottom: 60px;
+}
+
+/* Iconbox Style1 Gallery */
+.iconbox-gallery {
+    text-align: center;
+}
+
+.iconbox-gallery .box-header .iconbox-gallery-icon {
+    height: 60px;
+    line-height: 55px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.iconbox-gallery:hover .box-header .iconbox-gallery-icon {
+    -webkit-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.iconbox-gallery .box-content {
+    padding: none;
+}
+
+.iconbox-gallery .box-content h4.box-title {
+    margin: 29px 0 15px;
+    font-family: 'Red Hat Display';
+    font-size: 30px;
+}
+
+.iconbox-gallery .box-content .box-desc {
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+}
+
+/* Flat Row Title Booking */
+.flat-row-title-booking {
+    margin-bottom: 0px;
+}
+
+.flat-row-title-booking h2 {
+    font-family: 'Red Hat Display';
+    font-size: 27px;
+    color: #36454F;
+    font-weight: 650;
+    margin-bottom: none;
+    text-align: left;
+}
+
+.flat-row-title-booking1 h2 {
+    font-family: 'Red Hat Display';
+    font-size: 20px;
+    color: #36454F;
+    font-weight: 610;
+    margin-bottom: 23px;
+    text-align: left;
+}
+
+.flat-row-title-booking p {
+    font-size: 19px;
+    color: #36454F;
+    font-weight: 380;
+    text-align: left;
+    margin-top: 8px;
+}
+
+.capacity-info {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #36454F;
+    margin-top: 7px;
+}
+
+.pax-icon {
+    width: 23px;
+    height: auto;
+    margin-right: 8px;
+    filter: invert(23%) sepia(12%) saturate(471%) hue-rotate(162deg) brightness(95%) contrast(85%);
+	margin-bottom: 0px;
+}
+
+.separator-line {
+    border: 0;
+    height: 0.5px;
+    background-color: #d3d3d3;
+    margin: 30px 0;
+}
+
+.room-description2 p {
+	font-size: 15px;
+    color: #36454F;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.room-description1 p {
+    font-size: 13px;
+    color: #56656F;
+    line-height: 1.6;
+    font-weight: 400;
+	margin-top: none;
+}
+
+
+
+.fasilitas-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fasilitas-column {
+    flex-basis: 50%;
+}
+
+.fasilitas-column ul {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0; /* Tambahkan jarak atas-bawah di dalam list item */
+    font-size: var(--facility-text-size, 16px); 
+    color: #36454F;
+    font-weight: 500 !important; /* Paksa font-weight menjadi 800 */
+}
+
+
+
+
+.facility-icon {
+    margin-right: 10px; /* Spasi antara ikon dan teks */
+    margin-top: 10px; /* Jarak atas ikon */
+    margin-bottom: 10px; /* Jarak bawah ikon */
+    filter: invert(34%) sepia(9%) saturate(746%) hue-rotate(167deg) brightness(90%) contrast(86%);
+}
+
+.facility-icon.wifi {
+    width: var(--icon-size-wifi, 24px); /* Adjustable icon size */
+    height: auto;
+}
+
+.facility-icon.ac {
+    width: var(--icon-size-ac, 28px);
+    height: auto;
+}
+
+.facility-icon.projector {
+    width: var(--icon-size-projector, 32px);
+    height: auto;
+}
+
+.facility-icon.sound-system {
+    width: var(--icon-size-sound-system, 26px);
+    height: auto;
+}
+
+.facility-icon.coffee-table {
+    width: var(--icon-size-coffee-table, 30px);
+    height: auto;
+}
+
+
+/* Adjust the alignment of items in the right column */
+.facilities-list ul:nth-child(2) li {
+    margin-bottom: 0;
+    padding: 0; /* Remove padding for better alignment */
+}
+
+:root {
+    --icon-size-default: 17px;
+    --icon-size-wifi: 40px;
+    --icon-size-ac: 35px;
+    --icon-size-projector: 35px;
+    --icon-size-sound-system: 35px;
+    --icon-size-coffee-table: 36px;
+}
+
+
+/* Custom Styles */
+.right-column{
+    margin-bottom: -15px; /* Adjust this value to increase or decrease the space */
+}
+
+.middle-column{
+    margin-bottom: -25px; /* Adjust this value to increase or decrease the space */
+
+}
+
+.left-column {
+    margin-bottom: 0; /* Menghilangkan margin negatif sebelumnya */
+}
+
+.right-column .custom-box {
+    margin-top: 0px; /* Sesuaikan nilai ini untuk menggeser custom-box ke atas */
+}
+
+/* Custom Box Styles */
+.custom-box {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 30px;
+    height: fit-content;
+    border: 0.5px solid #00000011; /* Border warna hitam dengan ketebalan 1px */
+}
+
+.price-details-title h2 {
+    font-size: 20px;
+    font-weight: 450; /* Medium bold weight */
+    color: #000; /* Warna hitam */
+	margin-left: 15px;
+	margin-top: 5px;
+    margin-bottom: 20px; /* Memberikan sedikit jarak di bawah teks */
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 10px auto;
+
+}
+
+.table-row {
+    position: relative;
+}
+
+
+#select-rooms-row select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #00000025;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+	border-radius: 0 0 10px 10px;
+}
+
+#check-in-row input{
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #00000025;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+	border-radius: 0 0 10px 10px;
+}
+
+#check-out-row input {
+	width: 100%;
+    padding: 10px;
+    border: 1px solid #00000025;
+    box-sizing: border-box;
+    font-size: 12px;
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    border-left: none; /* Remove the left border for the right input */
+}
+
+
+#check-in-row input {
+    border-radius: 10px 0 0 0;
+    border-bottom: none; /* Remove bottom border */
+	color: #000;
+	font-family: 'Red Hat Display', sans-serif;
+	font-weight: 450;
+
+}
+
+#check-out-row input { /* Make sure this matches your HTML structure */
+	border-radius: 0 10px 0 0; /* Adjust this to the desired corners */
+    border-bottom: none; /* Remove bottom border */
+    color: #000;
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 450;
+	border-left: none;
+}
+
+#select-rooms-row select {
+    margin-top: -20px; /* To ensure no gap between the rows */
+	color: #000;
+	font-size: 12px;
+	font-weight: 500;
+	font-family: 'Red Hat Display', sans-serif;
+}
+
+#check-in-row input:focus,
+#check-out-row input:focus,
+#select-rooms-row select:focus {
+    border-color: black;
+	border-width: 2px ;
+	color: #000;
+	transition: none;
+}
+
+#check-in-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divider-line {
+    width: 2px;
+    height: 100%;
+    background-color: #ccc; /* Grey line */
+}
+
+#check-in-row input:focus {
+    border-color: black;
+    border-radius: 10px 0 0 0;
+    color: #000;
+}
+
+#check-out-row input:focus {
+    border-color: black 0 10px 10px 0;
+    border-radius: 0 10px 0 0;
+    color: #000;
+}
+
+.map-container {
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.facilities-table-container {
+    margin-top: 20px;
+    width: 100%; /* Make the container full width */
+}
+
+.facilities-table {
+    width: 100%; /* Ensure the table itself is 100% of the container's width */
+    max-width: 1200px; /* Optionally, you can set a maximum width for the table */
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 auto; /* Center the table within the container */
+}
+
+.facilities-table td {
+    padding: 10px;
+    border: 1px solid lightgrey;
+    text-align: center; /* Center horizontally */
+    vertical-align: middle; /* Center vertically */
+    font-size: 14px;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.facilities-table .room-type {
+    width: 150px; /* Make the Room type column wider */
+    font-weight: 600; /* Style for Room type text */
+}
+
+.facilities-table .room-type-text {
+    font-size: 16px; /* Larger font size for Room type text */
+	color: #000;
+}
+
+.facilities-table .room-size {
+    font-size: 11px; /* 2px smaller than the room name text */
+    color: #888; /* Lighter color for the room size text */
+    font-style: italic; /* Italicize Room size text */
+    font-weight: 400;
+    margin-top: 2px; /* Adjust this value as needed to decrease space */
+    display: block; /* Ensure room-size is on a new line */
+    line-height: 1.2; /* Adjust line-height to control spacing between lines */
+}
+
+.facilities-table .capacity-data {
+    font-size: 14px; /* Match font size of room type */
+    color: #000; /* Same color as room type text */
+    font-weight: 640; /* Same font weight as room type */
+}
+
+.light-blue {
+    background-color: #e6f0f3	;
+    font-size: 14px; /* Adjust as needed */
+    font-weight: 680;
+	color: #000;
+}
+
+.merged-cell {
+    background-color: #e6f0f3;
+    font-size: 14px; /* Adjust as needed */
+    font-weight: 690;
+	color: #000;
+}
+
+/* Styling for the last row cells (non-merged) */
+.facilities-table tr:last-child td {
+    background-color: #ffffff;
+}
+
+.table-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.facilities-table .taxes-fees {
+    font-size: 11px; /* Same as room size text */
+    color: #888; /* Same lighter color */
+    font-style: italic; /* Italicize text */
+    font-weight: 400; /* Same weight */
+    margin-top: 0px; /* Adjust this value to decrease space as needed */
+    display: block; /* Ensure it's on a new line */
+    line-height: 1.5; /* Control the line spacing */
+}
+
+.facilities-list .left-column {
+    width: 110%; /* Match the left column's width */
+    padding-left: -70%; /* Add a small padding to the left for spacing */
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+.facilities-list .right-column {
+    width: 110%; /* Match the left column's width */
+    padding-left: -70%; /* Add a small padding to the left for spacing */
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+
+/* Customizing placeholder font size and style */
+#check-in-row input::placeholder,
+#check-out-row input::placeholder {
+    font-size: 12px;
+    font-weight: 600; /* Example: bold */
+    color: #000;
+    font-family: 'Red Hat Display', sans-serif;
+    text-align: left; /* Center-align the placeholder text */
+}
+
+/* Customizing the SELECT ROOMS placeholder */
+#select-rooms-row select option[disabled][selected] {
+    display: none;
+}
+#select-rooms option:not(:checked) {
+    color: #000; /* Example: dark grey color */
+    font-weight: 100; /* Example: bold */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+#select-rooms option:checked {
+    color: black;
+}
+
+
+#submit-button-booking {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #e65c00, #ffb74d); /* Gradient from dark to light orange left to right */
+    border: none;
+    border-radius: 10px; /* Radius 10px */
+    color: white;
+    font-size: 18px;
+	font-weight: 620;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+	line-height: normal;
+	margin-top: -10px;
+}
+
+#submit-button-booking:hover {
+    background-color: #b24700; /* Dua warna lebih gelap dari oranye */
+}
+
+/* Price Container */
+.price-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+/* Room Description */
+.room-description p {
+    font-size: 14.5px;
+    color: #36454F;
+    line-height: 1.6;
+    font-weight: 420;
+    margin: 0;
+}
+
+.room-description1 p {
+    font-size: 12px;
+    color: #36454F;
+    line-height: 1.6;
+    font-weight: 420;
+    margin: 0;
+	margin-left: 105px;
+}
+
+/* Price Details */
+.price-details {
+    font-size: 23px; /* Adjust font size as needed */
+    font-weight: 690; /* Bold font */
+    color: #e65c00; /* Dark slate gray color */
+    margin: 0;
+	margin-top: -2px;
+	margin-left: 105px;
+}
+
+.price-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically centered */
+    gap: 20px; /* Space between the two items */
+}
+
+.price-details1 h2 {
+    font-size: 14px;
+    font-weight: 500; /* Medium bold weight */
+    color: #232323; /* Warna hitam */
+    margin: 0; /* Remove default margins */
+	margin-top: 16px;
+}
+
+.price-total h2 {
+	font-size: 14px;
+    font-weight: 500; /* Medium bold weight */
+    color: #232323; /* Warna hitam */
+    margin: 0; /* Remove default margins */
+	margin-top: 16px;
+	text-align: right;
+
+}
+
+.price-details1 h2 {
+    text-decoration: underline;
+}
+
+
+
+/* Book Now Button */
+.book-now-button {
+    background-color: #e65c00; /* Green background color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    height: 40px; /* Set a fixed height */
+    padding: 0 20px; /* Only horizontal padding, adjust as needed */
+    font-size: 15px; /* Adjust font size */
+    font-weight: 700; /* Bold font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    line-height: 1; /* Set line-height to normal */
+    margin-top: -20px;
+	margin-left: 270px;
+}
+
+
+.book-now-button:hover {
+    background-color: #b24700; /* Darker green on hover */
+}
+
+
+/* Room Description */
+.room-description {
+    margin-bottom: 5px; /* Adjust space between the description and the price container */
+}
+
+
+/* Gallery Booking
+-------------------------------------------------------------- */
+
+.gallery-grid {
+    padding: 20px 0;
+}
+
+.gallery-grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    height: auto; /* Allow grid height to adjust automatically */
+}
+
+.gallery-item-main {
+    grid-row: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item-main img {
+    border-radius: 10px 0 0 10px;
+}
+
+.gallery-item-small {
+    height: 200px; /* Atur tinggi sesuai kebutuhan */
+    overflow: hidden; /* Pastikan bagian yang terpotong tidak terlihat */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar terpotong sesuai kontainer */
+}
+
+.gallery-item-small:nth-child(2) img {
+    border-radius: 0 0 0 0; /* No radius */
+}
+
+.gallery-item-small:nth-child(3) img {
+    border-radius: 0 10px 0 0; /* No radius */
+}
+
+.gallery-item-small:nth-child(4) img {
+    border-radius: 0 0 0 0; /* Top right corner */
+}
+
+.gallery-item-small:nth-child(5) img {
+    border-radius: 0 0 10px 0; /* Bottom right corner */
+}
+
+/* Button More */
+.btn-more {
+	text-align: center;
+	margin-top: 60px;
+}
+
+.btn-more a {
+	padding: 15px 30px;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	position: relative;
+	z-index: 99;
+}
+
+.btn-more a:before {
+	content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+	background: #4ca1af;
+    border: 0px solid #4ca1af;
+    opacity: 1;
+    visibility: visible;
+    z-index: -2;
+    -webkit-transition: all .8s cubic-bezier(.3,.95,.3,.95);
+    -moz-transition: all .8s cubic-bezier(.3,.95,.3,.95);
+    transition: all .8s cubic-bezier(.3,.95,.3,.95);
+}
+
+.btn-more a:hover:before {
+	opacity: 0;
+	transform: scale(1.2);
+	visibility: hidden;
+}
+
+.btn-more a:visited,
+.btn-more a:focus {
+	color: #fff;
+}
+
+.btn-more a:hover,
+.btn-more a:visited {
+	color: #fff;
+	background-color: #2c3e50;
+}
+
+/* Flat Main Blog Style2
+-------------------------------------------------------------- */
+.flat-main-blog.style2 {
+	background: url('../images/page/bg-01.png') top center repeat-y;
+	padding: 80px 0 92px;
+}
+
+.flat-main-blog.style2 .btn-more {
+	margin-top: 74px;
+}
+
+.flat-main-blog.style2 .btn-more a {
+	padding: 15px 36px;
+}
+
+/* Flat Introduce
+-------------------------------------------------------------- */
+.flat-introduce {
+	padding: 72px 0;
+}
+
+.flat-introduce .row:not(:last-child) {
+	margin-bottom: 50px;
+	display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.flat-introduce .row:nth-child(2) {
+	margin-bottom: 56px;
+}
+
+.flat-introduce .row:nth-child(3) {
+	margin-bottom: 53px;
+}
+
+.flat-introduce .row:nth-child(3) .introduce .introduce-title h3 {
+	margin-bottom: 54px;
+}
+
+.flat-introduce .row:nth-child(4) .introduce .introduce-title h3 {
+	margin-bottom: 37px;
+}
+/* Introduce Header */
+.introduce-header {
+	text-align: center;
+	padding: 0 170px 75px;
+	margin-bottom: 4px;
+	border-bottom:  1px solid #ededed;
+}
+
+.introduce-header p {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+/* Introduce */
+.introduce .introduce-title {
+	position: relative;
+}
+
+.introduce .introduce-title h3 {
+	position: relative;
+	font-size: 30px;
+	font-weight: none;
+	font-family: 'Red Hat Display';
+	line-height: 36px;
+	z-index: 2;
+	margin: 20px 0 52px;
+	letter-spacing: -0.05px;
+}
+
+.introduce .introduce-title span {
+	position: absolute;
+	z-index: 1;
+	font-size: 100px;
+	color: #4ca1af;
+	font-family: 'Red Hat Display';
+	opacity: 0.1;
+	top: -10px;
+}
+
+.introduce .introduce-content {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f8f8;
+    padding: 40px 0;
+}
+
+.widget-categories {
+    margin-bottom: 30px;
+}
+
+.widget-categories .widget-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.widget-categories ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget-categories ul li {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.widget-categories ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.widget-categories ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Introduce Footer */
+.introduce-footer {
+    text-align: center;
+    padding-top: 55px;
+    margin-top: 27px;
+    border-top: 1px solid #ebebeb;
+}
+
+.introduce-footer p {
+    font-family: 'Red Hat Display';
+    font-size: 18px;
+    font-style: italic;
+}
+
+.introduce-footer .btn-more a {
+    padding: 15px 34px 16px;
+}
+
+
+
+/* Introduce Image */
+.introduce-image {
+	text-align: center;
+}
+
+
+
+/* Flat Price
+-------------------------------------------------------------- */
+.flat-price {
+	padding: 80px 0;
+}
+
+/* Price Box */
+.price-box {
+	float: left;
+	text-align: center;
+	box-shadow: 0px 10px 27px 0px rgba(0, 0, 0, 0.09);
+}
+
+.price-box.free,
+.price-box.professional {
+	width: 300px;
+	margin-top: 48px;
+}
+
+.price-box.basic {
+	margin: 0 70px;
+	width: 430px;
+}
+
+.price-box .price-title {
+	height: 60px;
+	background-color: #4ca1af;
+	box-shadow: 0px 10px 27px 0px rgba(0, 0, 0, 0.23);
+}
+
+.price-box .price-title h3 {
+	line-height: 62px;
+	font-weight: 400;
+	font-size: 24px;
+	color: #fff;
+}
+
+.price-box .price-header {
+	padding: 59px 0 53px;
+}
+
+.price-box.professional .price-header {
+	padding: 59px 0 42px;
+}
+
+.price-box.basic .price-header {
+    padding: 94px 0 77px;
+}
+
+.price-box.free .price-header .price-number {
+	font-size: 36px;
+}
+
+.price-box .price-header .price-number {
+	font-size: 48px;
+	font-weight: 500;
+	line-height: 30px;
+}
+
+.price-box .price-header .price-number span {
+	font-size: 16px;
+	font-weight: 300;
+	display: block;
+	margin-top: 7px;
+}
+
+.price-box.professional .price-header .price-number span,
+.price-box.basic .price-header .price-number span {
+	margin-top: 18px;
+}
+
+.price-box .price-content {
+	border-top: 1px solid #c2c2c2;
+	padding: 27px 0 30px;
+	margin: 0 30px;
+}
+
+.price-box.basic .price-content {
+	padding: 27px 0 56px;
+}
+
+.price-box .price-content ul li {
+	margin-bottom: 12px;
+	font-size: 16px;
+}
+
+.price-box .price-content ul li span {
+	color: #c2c2c2;
+}
+
+.price-box .price-content ul li strong {
+	font-weight: 500;
+}
+
+.price-box.free .price-content .btn-more,
+.price-box.professional .price-content .btn-more {
+	margin-top: 54px;
+}
+
+.price-box.free .price-content .btn-more a,
+.price-box.professional .price-content .btn-more a {
+    padding: 0px 42px 0px;
+    height: 50px;
+    line-height: 54px;
+    display: inline-block;
+    color: #4ca1af;
+}
+
+.price-box.free .price-content .btn-more a:hover,
+.price-box.professional .price-content .btn-more a:hover {
+	color: #fff;
+}
+
+.price-box.free .price-content .btn-more a:before,
+.price-box.professional .price-content .btn-more a:before {
+	background-color: #fff;
+	border: 1px solid #4ca1af;
+}
+
+.price-box.basic .price-content .btn-more {
+	margin-top: 53px;
+}
+
+.price-box.basic .price-content .btn-more a {
+    padding: 0px 42px 0px;
+    height: 50px;
+    line-height: 54px;
+    display: inline-block;
+}
+
+/* Flat Error
+-------------------------------------------------------------- */
+.flat-error-page {
+	padding: 80px 0 93px;
+}
+
+/* Wrap Error */
+.wrap-error .info-error {
+	margin-top: 72px;
+}
+
+.wrap-error .info-error .error-title {
+	font-size: 36px;
+	line-height: 36px;
+	margin-bottom: 26px;
+	font-weight: 400;
+}
+
+.wrap-error .info-error .sub-error {
+	font-size: 16px;
+}
+
+.wrap-error .btn-more {
+	margin-top: 66px;
+}
+
+.wrap-error .btn-more a {
+	padding: 15px 34px 16px;
+}
+
+.wrap-error .btn-more a:not(:hover) {
+	color: #4ca1af;
+}
+
+.wrap-error .btn-more a:before {
+	background-color: transparent;
+	border-width: 1px;
+}
+
+/* Flat Count
+-------------------------------------------------------------- */
+.flat-count {
+	padding: 143px 0;
+	background: url('../images/parallax/01.png') top center repeat;
+}
+
+.flat-count .container,
+.flat-login .container {
+	position: relative;
+	z-index: 2;
+}
+
+.flat-count .overlay,
+.flat-login .overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(76, 161, 175, 0.9); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(-90deg, rgba(76, 161, 175, 0.9), rgba(44, 62, 80, 0.9)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(-90deg, rgba(76, 161, 175, 0.9), rgba(44, 62, 80, 0.9)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(-90deg, rgba(76, 161, 175, 0.9), rgba(44, 62, 80, 0.9)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(-90deg, rgba(76, 161, 175, 0.9), rgba(44, 62, 80, 0.9)); /* Standard syntax */
+}
+
+/* Wrap Count */
+.wrap-count {
+	text-align: center;
+	color: #fff;
+}
+
+.wrap-count .count-header h1 {
+	font-size: 72px;
+	font-weight: none;
+	font-family: 'Red Hat Display';
+	padding-bottom: 49px;
+	margin-bottom: 51px;
+	position: relative;
+}
+
+.wrap-count .count-header h1 a {
+	color: #fff;
+}
+
+.wrap-count .count-header h1:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 500px;
+	height: 1px;
+	background-color: #fff;
+	margin-left: -250px;
+	z-index: 2;
+}
+
+.wrap-count .count-header .sub-title h3 {
+	font-size: 48px;
+	font-weight: 500;
+	line-height: 36px;
+	margin-bottom: 18px;
+}
+
+.wrap-count .count-header .sub-title p {
+	text-transform: uppercase;
+    letter-spacing: 8.5px;
+    font-weight: 500;
+    padding-left: 9px;
+}
+
+.wrap-count .count-content {
+	padding: 214px 0 209px;
+}
+
+.wrap-count .count-content .countdown .square {
+	display: inline-block;
+	position: relative;
+}
+
+.wrap-count .count-content .countdown .square:not(:last-child) {
+	margin-right: 96px;
+}
+
+.wrap-count .count-content .countdown .square .numb {
+	font-size: 60px;
+	font-weight: 400;
+	line-height: 30px;
+	margin-right: 13px;
+}
+
+.wrap-count .count-content .countdown .square .numb,
+.wrap-count .count-content .countdown .square .text {
+	display: inline-block;
+}
+
+.wrap-count .count-content .countdown .square .text {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.wrap-count .count-content .countdown .square .text span {
+	margin-right: 13px;
+}
+
+.wrap-count .count-footer {
+	padding: 17px 0;
+	position: relative;
+}
+
+.wrap-count .count-footer:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 130px;
+	height: 1px;
+	margin-left: -65px;
+	background-color: #fff;
+}
+
+.wrap-count .count-footer .text {
+	font-size: 18px;
+	margin-bottom: 17px;
+}
+
+.wrap-count .count-footer ul li {
+	display: inline-block;
+	margin: 0 18px 0 14px;
+}
+
+.wrap-count .count-footer ul li a {
+	color: #fff;
+	font-size: 18px;
+}
+
+/* Infobox
+-------------------------------------------------------------- */
+.infobox {
+	border-radius: 8px;
+	padding: 5px 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 25px;
+	position: relative;
+	width: 430px;
+	z-index: 99;
+	-webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.infobox:after {
+	content: '';
+	position: absolute;
+	bottom: -20px;
+	left: 100px;
+	border-right: 15px solid transparent;
+	border-left: 15px solid transparent;
+	border-top: 20px solid rgba(255, 255, 255, 0.9);
+}
+
+.infobox .logo {
+	float: left;
+	margin-right: 20px;
+	border-radius: 5px;
+	height: 90px;
+	width: 90px;
+	line-height: 86px;
+	background-color: #4ca1af;
+	color: #fff;
+	font-size: 48px;
+	font-weight: none;
+	font-family: 'Red Hat Display';
+	text-align: center;
+}
+
+.infobox .img-box {
+	float: left;
+	margin-right: 20px;
+}
+
+.infobox .text {
+	float: left;
+}
+
+.infobox .text h3 {
+	font-size: 24px;
+	font-weight: none;
+	margin-bottom: 15px;
+	color: #2c3e50;
+	font-family: 'Red Hat Display';
+}
+
+.infobox .text {
+	font-size: 16px;
+	font-family: 'Montserrat';
+}
+
+/* Infobox Style2 */
+.infobox.style2 {
+	width: 400px;
+}
+
+.infobox.style2 .img-box img {
+	border-radius: 5px;
+}
+
+.infobox.style2 .text h3 {
+	font-family: 'Montserrat';
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.infobox.style2 .text {
+	font-size: 14px;
+}
+
+#content {
+	height: 20px;
+	width: 20px;
+	background-color: #2c3e50;
+	border-radius: 50%;
+}
+
+/* Box Search
+-------------------------------------------------------------- */
+.box-search {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.wrap-box-search.style2 {
+	padding: 0;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.wrap-box-search.style2 form > span {
+	border: none;
+	width: 33.33%;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 4px;
+}
+
+.wrap-box-search.style2 form > span input,
+.wrap-box-search.style2 form > span select {
+	border-color: #c2c2c2;
+	border-radius: 30px;
+	height: 50px;
+	padding: 0px 24px;
+}
+
+.wrap-box-search.style2 .box-slider {
+	margin: 57px 15px 34px;
+}
+
+.wrap-box-search.style2 .box-slider span {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.wrap-box-search.style2 form > span > span {
+    top: 17px;
+    right: 40px;
+}
+
+.wrap-box-search.style2.v2 {
+	margin-right: -6px;
+}
+
+.wrap-box-search.style2.v2 .box-slider {
+    margin: 57px 6px 43px 15px;
+}
+
+.wrap-box-search.style2.v2 form > span {
+	width: 50%;
+	padding-right: 11px;
+}
+
+.wrap-box-search.style2.v2 form > span.location {
+    padding-right: 6px;
+    padding-left: 19px;
+}
+
+.wrap-box-search.style2.v2 form > span.categories {
+	margin-top: 30px;
+    width: 100%;
+    padding-right: 6px;
+}
+
+.wrap-box-search.style2.v2 form > span > span {
+    top: 17px;
+    right: 32px;
+}
+
+/* Box Slider 
+-------------------------------------------------------------- */
+.box-slider #ex1Slider .slider-selection {
+   background: #BABABA;
+}
+
+.box-slider .slider.slider-horizontal {
+	background-color: #c2c2c2;
+	height: 5px;
+	position: relative;
+	margin-bottom: 16px;
+}
+
+.box-slider .tooltip {
+    top: -30px;
+    padding: 0 0 8px;
+}
+
+.box-slider .tooltip.top .tooltip-arrow {
+	height: 20px;
+	width: 20px;
+	border: 5px solid #50a3b1;
+	background-color: #fff;
+	border-radius: 50%;
+	bottom: -10px;
+    left: 35%;
+}
+
+.box-slider .tooltip-inner {
+	background-color: transparent;
+	color: #2c3e50;
+	font-size: 16px;
+}
+
+.box-slider .slider.slider-horizontal:first-child {
+	display: none;
+}
+
+/* Flat Iconbox Style2
+-------------------------------------------------------------- */
+.flat-iconbox.style2 {
+	padding: 150px 0 143px;
+}
+
+/* Iconbox Style2 */
+.iconbox.style2 .box-header {
+	margin-bottom: 55px;
+}
+.iconbox.style2 .box-content {
+	padding-right: 62px;
+	padding-left: 62px;
+}
+
+.iconbox.style2 .box-content .box-desc {
+	color: #2c3e50;
+	font-size: 16px;
+}
+
+/* Flat Contact
+-------------------------------------------------------------- */
+.flat-contact .contact-form,
+.flat-contact .contact-map {
+	float: left;
+	width: 50%;
+}
+
+.flat-contact .contact-form {
+	position: relative;
+}
+
+.flat-contact .contact-form .contact-us {
+	padding: 172px 366px 187px 85px;
+	position: relative;
+	z-index: 2;
+}
+
+.flat-contact .contact-form .contact-us h3 {
+	color: #fff;
+	font-size: 30px;
+	font-weight: none;
+	font-family: 'Red Hat Display';
+	margin-bottom: 30px;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.name,
+.flat-contact .contact-form .contact-us form .wrap-contact.email {
+	width: 50%;
+	float: left;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.name {
+	padding-right: 10px;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.email {
+	padding-left: 10px;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.name input,
+.flat-contact .contact-form .contact-us form .wrap-contact.email input,
+.flat-contact .contact-form .contact-us form .wrap-contact.message textarea {
+	border-radius: 10px;
+	border-color: #fff;
+	color: #fff;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.name input,
+.flat-contact .contact-form .contact-us form .wrap-contact.email input {
+	height: 50px;
+}
+
+.flat-contact .contact-form .contact-us form .wrap-contact.message textarea {
+	height: 150px;
+}
+
+.flat-contact .contact-form .contact-us form .btn-more {
+	text-align: left;
+	margin-top: 43px;
+}
+
+.flat-contact .contact-form .contact-us form .btn-more a {
+	padding: 15px 43px 16px;
+}
+
+/* Flat Listing
+-------------------------------------------------------------- */
+.flat-listing {
+	padding: 80px 0 21px;
+}
+
+/* Form Listing */
+form.form-listing .inner-box {
+	margin-bottom: 60px;
+	box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.09);
+	background-color: #fff;
+	border-radius: 3px;
+    padding: 23px 30px 18px;
+}
+
+form.form-listing .inner-box.form {
+	padding-top: 56px;
+	padding-bottom: 35px;
+}
+
+form.form-listing .inner-box.form.style1 {
+	padding-bottom: 49px;
+	padding-top: 55px;
+}
+
+form.form-listing .inner-box.form.style2 {
+	padding-top: 55px;
+	padding-bottom: 50px;
+}
+
+form.form-listing .inner-box.form.style2 input {
+	margin-bottom: 10px;
+}
+
+form.form-listing .inner-box input,
+form.form-listing .inner-box select {
+	height: 50px;
+	padding-left: 30px;
+}
+
+form.form-listing .inner-box input,
+form.form-listing .inner-box textarea,
+form.form-listing .inner-box select,
+form.form-listing .inner-box .map-4 {
+	border-radius: 4px;
+	border-color: #c2c2c2;
+}
+
+form.form-listing .inner-box input {
+	margin-bottom: 26px;
+}
+
+form.form-listing .inner-box select {
+	margin-bottom: 25px;
+}
+
+form.form-listing .inner-box textarea {
+	height: 200px;
+	margin-bottom: 10px;
+	padding: 13px 29px;
+}
+
+form.form-listing .inner-box input::-webkit-input-placeholder,
+form.form-listing .inner-box textarea {
+  color: #c2c2c2;
+}
+
+form.form-listing .inner-box textarea::-webkit-input-placeholder {
+	color: #c2c2c2;
+}
+
+form.form-listing .inner-box input::-moz-placeholder {
+  color: #c2c2c2;
+}
+
+form.form-listing .inner-box textarea::-moz-placeholder {
+	color: #c2c2c2;
+}
+
+form.form-listing .inner-box input:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+form.form-listing .inner-box textarea:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+
+form.form-listing .inner-box input:-moz-placeholder {
+  color: #c2c2c2;
+}
+
+form.form-listing .inner-box textarea:-moz-placeholder {
+	color: #c2c2c2;
+}
+
+form.form-listing .inner-box .map-4 {
+	margin-bottom: 30px;
+}
+
+form.form-listing .inner-box label {
+	font-size: 16px;
+	font-weight: 400;
+	margin-bottom: 3px;
+}
+
+form.form-listing .inner-box.form.style2 label {
+	margin-bottom: 6px;
+}
+
+form.form-listing .inner-box .wrap-listing.location {
+	position: relative;
+}
+
+form.form-listing .inner-box .wrap-listing.location input {
+	margin-bottom: 10px;
+}
+
+form.form-listing .inner-box .wrap-listing.location span {
+	position: absolute;
+	bottom: 16px;
+	right: 29px;
+	font-size: 18px;
+}
+
+form.form-listing .inner-box > p {
+	float: left;
+	line-height: 30px;
+	font-size: 16px;
+}
+
+form.form-listing .inner-box > .btn-more {
+	float: right;
+	margin-top: 15px;
+}
+
+form.form-listing .inner-box > .btn-more a {
+	padding: 15px 42px 16px;
+}
+
+form.form-listing .inner-box .wrap-listing.category,
+form.form-listing .inner-box .wrap-listing.price,
+form.form-listing .inner-box .wrap-listing.business .day,
+form.form-listing .inner-box .wrap-listing.business .hour-from,
+form.form-listing .inner-box .wrap-listing.business .hour-to {
+	position: relative;
+}
+
+form.form-listing .inner-box .wrap-listing.category span,
+form.form-listing .inner-box .wrap-listing.price span,
+form.form-listing .inner-box .wrap-listing.business .day span,
+form.form-listing .inner-box .wrap-listing.business .hour-from span,
+form.form-listing .inner-box .wrap-listing.business .hour-to span {
+	position: absolute;
+	bottom: 19px;
+	right: 30px;
+}
+
+form.form-listing .inner-box .wrap-listing.business .day span,
+form.form-listing .inner-box .wrap-listing.business .hour-from span,
+form.form-listing .inner-box .wrap-listing.business .hour-to span {
+	top: 17px;
+	right: 30px;
+}
+
+form.form-listing .inner-box .wrap-listing.your-email,
+form.form-listing .inner-box .wrap-listing.your-name,
+form.form-listing .inner-box .wrap-listing.phone,
+form.form-listing .inner-box .wrap-listing.website,
+form.form-listing .inner-box .one-half,
+form.form-listing .inner-box .wrap-listing.price-from,
+form.form-listing .inner-box .wrap-listing.price-to {
+	width: 50%;
+	float: left;
+}
+
+form.form-listing .inner-box .wrap-listing.your-email,
+form.form-listing .inner-box .wrap-listing.phone,
+form.form-listing .inner-box .one-half:first-child {
+	padding-right: 15px;
+}
+
+form.form-listing .inner-box .wrap-listing.your-name,
+form.form-listing .inner-box .wrap-listing.website,
+form.form-listing .inner-box .one-half:nth-child(2) {
+	padding-left: 15px;
+}
+
+form.form-listing .inner-box .wrap-listing.price-from {
+	padding-right: 10px;
+}
+
+form.form-listing .inner-box .wrap-listing.price-to {
+	padding-left: 10px;
+}
+
+form.form-listing .inner-box .one-half .wrap-listing.business div,
+form.form-listing .inner-box .one-half .wrap-listing.business button {
+	float: left;
+}
+
+form.form-listing .inner-box .one-half .wrap-listing.business button {
+	padding: 0 7px 0 8px;
+	font-size: 24px;
+}
+
+form.form-listing .inner-box .one-half .wrap-listing.business .day {
+	width: 160px;
+	margin-right: 10px;
+}
+
+form.form-listing .inner-box .one-half .wrap-listing.business .hour-from,
+form.form-listing .inner-box .one-half .wrap-listing.business .hour-to {
+	width: 140px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+form.form-listing .inner-box .one-half .wrap-listing.business .btn-business {
+	margin-left: 10px;
+}
+
+form.form-listing .inner-box .one-half .info-business .item {
+	position: relative;
+	margin-bottom: 6px;
+}
+
+form.form-listing .inner-box .one-half .info-business .item .date {
+	padding-left: 31px;
+	font-weight: 400;
+}
+
+form.form-listing .inner-box .one-half .info-business .item .hour-from {
+	position: absolute;
+	left: 211px;
+}
+
+form.form-listing .inner-box .one-half .info-business .item .line {
+	position: absolute;
+	left: 309px;
+}
+
+form.form-listing .inner-box .one-half .info-business .item .hour-to {
+	position: absolute;
+	right: 131px;
+}
+
+form.form-listing .inner-box .one-half .info-business .item .btn-close {
+	position: absolute;
+	right: 13px;
+	top: 6px;
+	color: #ed4545;
+}
+
+form.form-listing .inner-box.style3 {
+	padding-top: 56px;
+	padding-bottom: 60px;
+}
+
+form.form-listing .inner-box.style3 label {
+	margin-bottom: 6px;
+}
+
+form.form-listing .inner-box.style3 input {
+	margin-bottom: 10px;
+}
+
+form.form-listing .inner-box .browse {
+	text-align: center;
+	background-color: #ebebeb;
+	border: 2px dashed #c2c2c2;
+	padding: 21px 0 19px;
+	border-radius: 4px;
+}
+
+form.form-listing .inner-box .browse p {
+	color: #c2c2c2;
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+form.form-listing .inner-box .browse > span {
+	display: block;
+	color: #c2c2c2;
+	font-weight: 400;
+}
+
+form.form-listing .inner-box .browse .btn-more {
+    margin-top: 13px;
+    margin-bottom: 12px;
+}
+
+form.form-listing .inner-box .browse .upload {
+	position: relative;
+	overflow: hidden;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+form.form-listing .inner-box .browse .upload span {
+	cursor: pointer;
+	background-color: #4ca1af;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	height: 40px;
+    line-height: 44px;
+    padding: 0 28px;
+	display: block;
+	border-radius: 20px;
+}
+
+form.form-listing .inner-box .browse .upload input {
+	position: absolute;
+	top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 99;
+    height: auto;
+    filter: alpha(opacity=0);
+}
+
+form.form-listing .inner-box button.submit-form-listing {
+	display: block;
+	width: 100%;
+	font-size: 24px;
+	font-weight: 500;
+	height: 94px;
+	line-height: 98px;
+	letter-spacing: 0.1px;
+	-webkit-transition: all 0.3s ease-in-out;
+	   -moz-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		 -o-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+}
+
+form.form-listing .inner-box button.submit-form-listing:hover {
+	background-color: #2c3e50;
+}
+
+.pdmap.style2 {
+	padding-left: 0;
+	margin-bottom: 26px;
+}
+
+/* Flat Title
+-------------------------------------------------------------- */
+.flat-title {
+	padding: 47px 0 42px;
+	background-color: #fff;
+	box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.09);
+}
+
+/* title-left */
+.title-left .queue {
+	color: #f0b108;
+	font-size: 16px;
+}
+
+.title-left .box-title {
+	position: relative;
+	margin-top: 4px;
+	margin-bottom: 8px;
+}
+
+.title-left .box-title span {
+	position: absolute;
+    top: 19px;
+    left: 0;
+    line-height: 17px;
+    border-radius: 3px;
+    padding: 1px 6px 0px 9px;
+    border: 1px solid #f0b108;
+    color: #f0b108;
+}
+
+.title-left .box-title a {
+	font-size: 48px;
+	font-weight: 500;
+	line-height: 72px;
+	padding-left: 46px;
+}
+
+.title-left .box-title i {
+	position: relative;
+	color: #4697e8;
+	font-size: 16px;
+    top: -22px;
+    left: 9px;
+}
+
+.title-left ul.box-address li {
+	font-weight: 400;
+}
+
+.title-left ul.box-address li.address {
+	margin-bottom: 5px;
+}
+
+.title-left ul.box-address li i {
+	margin-right: 15px;
+}
+
+.title-left ul.box-address li.phone i {
+	margin-right: 12px;
+}
+
+
+/* Title Right */
+.title-right {
+	padding-top: 67px;
+	margin-right: -13px;
+	margin-left: -13px;
+}
+
+.title-right p {
+	text-align: right;
+	padding-right: 13px;
+}
+
+.title-right p a i {
+	margin-left: 15px;
+}
+
+.title-right .btn-more {
+	margin-top: 13px;
+	display: inline-block;
+	padding-right: 13px;
+	padding-left: 13px;
+}
+
+.title-right .btn-more a {
+	display: block;
+	margin-top: 0px;
+	width: 170px;
+	height: 50px;
+	line-height: 52px;
+	padding: 0;
+}
+
+.title-right .btn-more.review a:before {
+	background-color: #2c3e50;
+}
+
+/* Flat Explore Detail
+-------------------------------------------------------------- */
+.flat-explore-detail {
+	padding: 58px 0 80px;
+}
+
+.flat-explore-detail .comment-area .comment-title {
+	margin-bottom: 32px;
+}
+
+.flat-explore-detail .comment-area .comment-respond {
+	margin-top: 57px;
+}
+
+.text-box h3,
+.amenities h3 {
+	font-weight: none;
+	font-size: 24px;
+	font-family: 'Red Hat Display';
+	margin-bottom: 35px;
+}
+
+.text-box .text-desc {
+	margin-bottom: 36px;
+}
+
+.text-box .text-desc i {
+	font-style: italic;
+	font-size: 16px;
+	font-weight: 400;
+	margin: 12px 0;
+	display: block;
+}
+
+.amenities {
+	margin-bottom: 27px;
+	padding-bottom: 85px;
+	border-bottom: 1px solid #ededed;
+}
+
+.amenities ul.quater {
+	float: left;
+	padding-right: 30px;
+	margin-top: 5px;
+}
+
+.amenities ul.quater li {
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+
+.amenities ul.quater li span {
+	margin-right: 20px;
+}
+
+/* Side Bar
+-------------------------------------------------------------- */
+.sidebar .box {
+	box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.09);
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.sidebar .box.contact-box {
+	padding: 30px 20px 27px;
+}
+
+.sidebar .box.contact-box ul li:not(:last-child) {
+	margin-bottom: 25px;
+}
+
+.sidebar .box.contact-box ul li i {
+	margin-right: 12px;
+}
+
+.sidebar .box.open {
+	padding: 24px 20px 27px;
+	margin-bottom: 26px;
+}
+
+.sidebar .box.open p i {
+	margin-right: 12px;
+}
+
+.sidebar .box.open .box-desc {
+	font-weight: 400;
+	margin-top: 12px;
+}
+
+.sidebar .box.open .box-desc p span {
+	float: right;
+	color: #d03131;
+}
+
+.sidebar .involve h4 {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: 'Red Hat Display';
+	margin-bottom: 28px;
+}
+
+.sidebar .involve ul li {
+	margin-bottom: 14.5px;
+}
+
+.sidebar .involve ul li .img-box {
+	float: left;
+	margin-right: 30px;
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+}
+
+.sidebar .involve ul li .img-box:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(75, 161, 175, 0.5);
+	z-index: 2;
+	border-radius: 8px;
+	opacity: 0;
+	-webkit-transition: all 0.3s ease-in-out;
+	   -moz-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		 -o-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+}
+
+.sidebar .involve ul li:hover .img-box:after {
+	opacity: 1;
+}
+
+.sidebar .involve ul li .involve-desc {
+	line-height: 20px;
+	padding: 6px 0 4px;
+}
+
+.sidebar .involve ul li .involve-desc .title {
+	font-weight: 400;
+}
+
+.sidebar .involve ul li .involve-desc .queue {
+	color: #f0b108;
+	font-size: 12px;
+}
+
+.sidebar .involve ul li .involve-desc p {
+	font-size: 12px;
+}
+
+.comment-area article.comment-body .comment-content h5 span {
+	font-size: 16px;
+	color: #f0b108;
+	float: right;
+}
+
+.comment-respond .comment-vote {
+	margin-bottom: 50px;
+}
+
+.comment-respond .comment-vote p {
+	font-weight: 400;
+	margin-bottom: 16px;
+	font-size: 16px;
+}
+
+.comment-respond .comment-vote span {
+	font-size: 16px;
+}
+
+.comment-respond .comment-vote .queue {
+	color: #f0b108;
+	font-size: 24px;
+	margin-right: 21px;
+}
+
+
+.tp-leftarrow .tp-arr-allwrapper .tp-arr-imgholder {
+	margin-left: 40px;
+}
+
+.tp-rightarrow {
+	margin-right: 40px;
+}
+
+.tp-rightarrow:before {
+	text-align: right;
+	right: -35px;
+	position: relative
+}
+
+/* Flat Map
+-------------------------------------------------------------- */
+.map-2 {
+	height: 700px;
+}
+
+.map.s1,
+.map-1 {
+	height: 1847px;
+}
+
+.map-3 {
+	height: 260px;
+}
+
+.map-4 {
+	height: 220px;
+}
+
+/* Parallax
+-------------------------------------------------------------- */
+.parallax .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(119, 175, 76, 0.9); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(-90deg, rgba(154, 208, 61, 0.9), rgba(44, 62, 80, 0.9)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(-90deg, rgba(63, 213, 26, 0.9), rgba(44, 62, 80, 0.9)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(-90deg, rgba(61, 215, 5, 0.9), rgba(44, 62, 80, 0.9)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(-90deg, rgba(117, 206, 15, 0.9), rgba(44, 62, 80, 0.9)); /* Standard syntax */
+}
+
+.parallax .container {
+	position: relative;
+	z-index: 2;
+}
+
+.parallax {
+	width: 100%;
+	background-attachment: fixed;
+	background-position: 100% 0;
+	background-size: cover;
+}
+
+.parallax1 { background-image: url('../images/parallax/01.png'); }
+
+/* Go Top
+---------------------------------------------------------------*/
+.go-top {
+	position: fixed !important;
+	bottom: 20px;
+	right: 20px;
+	background-color: #4ca1af;
+	border-radius: 3px;
+	line-height: 40px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	display: block;
+	font-size: 16px;
+	z-index: 9999;
+	visibility: hidden;
+	opacity: 0;
+	transform: translateX(50%);
+}
+
+.go-top i {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.go-top:hover {
+	background-color: #2c3e50;
+	color: #ffffff;
+}
+
+.go-top.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
